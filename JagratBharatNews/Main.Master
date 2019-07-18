@@ -1,0 +1,80 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="JagratBharatNews.Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Jagrat Bharat News</title>
+    <%-- Custom Style Sheet --%>
+    <link href="Style/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <%-- Font awesome CSS --%>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <meta name="theme-color" content="#0c084c">
+</head>
+<body>
+    <nav class="navigationBar">
+        <div id="menu" class="menu"><i class="fa fa-bars"></i></div>
+        <h3>The Jagrat Bharat News</h3>
+    </nav>
+    <div class="floatingMenu" id="floatingMenu">
+        <div class="close">
+            <i id="close" class="fa fa-times"></i>
+        </div>
+        <div class="list">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li>
+                    <div class="search">
+                        <input type="text" name="search" id="searchBox">
+                        <span><i class="fa fa-search"></i></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="share">
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-youtube"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+     <footer class="footer">
+        <div class="footer-content">
+            <h4>The Jagrat Bharat News</h4>
+            <div class="share low">
+                <i class="fa fa-facebook"></i>
+                <i class="fa fa-twitter"></i>
+                <i class="fa fa-youtube"></i>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <%-- Google Ads Script --%>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6877458329354934",
+            enable_page_level_ads: true
+        });
+    </script>
+    <script src="Scripts/app.js"></script>
+</body>
+</html>
