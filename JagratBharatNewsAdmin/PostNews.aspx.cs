@@ -24,6 +24,7 @@ namespace JagratBharatNewsAdmin
             ddlCategory.DataValueField = "Id";
             ddlCategory.DataBind();
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
+            var myString = "HellowWorld";
         }
         protected void btnPreview_Click(object sender, EventArgs e)
         {
