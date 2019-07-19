@@ -24,7 +24,7 @@ namespace JagratBharatNewsAdmin
             ddlCategory.DataValueField = "Id";
             ddlCategory.DataBind();
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
-            var myString = "HellowWorld";
+            
         }
         protected void btnPreview_Click(object sender, EventArgs e)
         {
@@ -51,7 +51,7 @@ namespace JagratBharatNewsAdmin
             uploadParagraphs(splitText(txtBody.Text), postID);
 
             ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "window.open('Preview.aspx?PreviewID=" + previewID + "','_blank','location=yes,width=1000, height=800,scrollbars=yes,status=yes')", true);
-
+            Session["PreviewID"] = previewID;
         }
 
         private string uploadImage(FileUpload imageUploader, string previewID)
@@ -96,7 +96,7 @@ namespace JagratBharatNewsAdmin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            Session.Remove("PreviewID");
         }
     }
 }
