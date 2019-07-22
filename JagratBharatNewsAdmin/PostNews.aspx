@@ -36,8 +36,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-      
+    <div class="container">      
                 <div class="postNews">
                     <div class="newsCategory">
                         <asp:DropDownList runat="server" ID="ddlCategory" CssClass="textBox"></asp:DropDownList>
