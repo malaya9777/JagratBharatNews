@@ -128,14 +128,7 @@
 
                 </article>
             </main>
-        </div>
-        <div class="footer">
-            <div class="container">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn light-green" />
-                <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" CssClass="btn light-orange" />
-                <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" CssClass="btn light-red" />
-            </div>
-        </div>
+        </div>       
     </form>
 </body>
 </html>
