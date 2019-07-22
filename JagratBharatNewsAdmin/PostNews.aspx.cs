@@ -16,8 +16,17 @@ namespace JagratBharatNewsAdmin
             if (!IsPostBack)
             {
                 loadCategories();
+                loadPostGrid();
             }
         }
+
+        private void loadPostGrid()
+        {
+            var posts = db.Posts.Select(n => new {n.Id, n.HeadLine,image = n.Image.ToArray(), n.Submitted }).FirstOrDefault();
+           
+
+        }
+
         private void loadCategories()
         {
             var categories = db.Categories.ToList();
@@ -28,42 +37,12 @@ namespace JagratBharatNewsAdmin
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
             
         }
-        protected void btnPreview_Click(object sender, EventArgs e)
-        {
-            var post = new Post();
-            post.HeadLine = txtHeadline.Text;
-            post.Category = Convert.ToInt32(ddlCategory.SelectedValue);
-            post.NewsDate = Convert.ToDateTime(txtNewsDate.Text);
-            post.PostedOn = DateTime.Now;
-            post.PostedBy = Convert.ToInt32(Session["LoginId"]);
-            post.Image = fImage.FileBytes;
-            
-            string imageName = string.Format("{0:ddMMyyyyHHmmssFFF}", DateTime.Now);
-            //Upload Image
-            string imagePath = uploadImage(fImage, imageName);
-
-            post.VideoPath = videoEmbed.Text;            
-            post.ImagePath = imagePath;
-            post.Submitted = false;
-            db.Posts.InsertOnSubmit(post);
-            db.SubmitChanges();
-            var postID = db.Posts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
-            
-            //Upload splited paragraph
-            uploadParagraphs(splitText(txtBody.Text), postID);
-
-            ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "window.open('Preview.aspx?ID=" + postID + "','_blank','location=yes,width=1000, height=800,scrollbars=yes,status=yes')", true);
-
-        }
-
         private string uploadImage(FileUpload imageUploader, string previewID)
         {
             string imagePath = "";
            
             if (imageUploader.HasFile)
             {
-                
-                
                 var name = imageUploader.FileName.Split('.');
                 var fileType = name[name.Length - 1];
                 var fileName = previewID;
@@ -102,7 +81,37 @@ namespace JagratBharatNewsAdmin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var post = new Post();
+            post.HeadLine = txtHeadline.Text;
+            post.Category = Convert.ToInt32(ddlCategory.SelectedValue);
+            post.NewsDate = Convert.ToDateTime(txtNewsDate.Text);
+            post.PostedOn = DateTime.Now;
+            post.PostedBy = Convert.ToInt32(Session["LoginId"]);
+            post.Image = fImage.FileBytes;
 
+            string imageName = string.Format("{0:ddMMyyyyHHmmssFFF}", DateTime.Now);
+            //Upload Image
+            string imagePath = uploadImage(fImage, imageName);
+
+            post.VideoPath = videoEmbed.Text;
+            post.ImagePath = imagePath;
+            post.Submitted = false;
+            db.Posts.InsertOnSubmit(post);
+            db.SubmitChanges();
+            var postID = db.Posts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
+
+            //Upload splited paragraph
+            uploadParagraphs(splitText(txtBody.Text), postID);
+            ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + postID + " generated Successfully!')", true);
+
+        }
+
+        protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+            }
         }
     }
 }

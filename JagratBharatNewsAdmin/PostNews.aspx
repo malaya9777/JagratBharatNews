@@ -63,13 +63,23 @@
                         <asp:FileUpload runat="server" CssClass="textBox" ID="fImage" placeholder="Select Image" />
                     </div>
 
-                    <div class="action">
-                        <asp:Button ID="btnPreview" runat="server" CssClass="btn orange" Text="Preview" OnClick="btnPreview_Click" />
+                    <div class="action">                        
                         <asp:Button ID="btnSubmit" runat="server" CssClass="btn green" Text="Submit" ValidationGroup="Main" OnClick="btnSubmit_Click" />
                     </div>
                 </div>
            
         <div class="latestNews">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDataBound="grdPost_RowDataBound">
+                <Columns>
+                   
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Image ID="img" runat="server" Height="20" Width="40" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            <asp:Image ID="imgTest" runat="server" />
         </div>
     </div>
 </asp:Content>

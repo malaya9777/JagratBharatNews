@@ -43,7 +43,7 @@ namespace JagratBharatNewsAdmin
                 PostHeader.InnerText = post.HeadLine;
                 category.InnerText = GlobalMethods.getCategoryName(post.Category);
                 info.InnerText = post.NewsDate.Value.ToLongDateString();               
-                loadImageFromPath(loadIamge(BinaryToImage(post.Image.ToArray())));
+                loadImageFromPath(loadIamge(GlobalMethods.BinaryToImage(post.Image.ToArray())));
                 loadParagraph(paragraphs, loadVideo(post.VideoPath));
             }
         }
@@ -56,18 +56,7 @@ namespace JagratBharatNewsAdmin
             return path;
         }
 
-        private Image BinaryToImage(byte[] imageBytes)
-        {
-            if (imageBytes == null)
-            {
-                return null;
-            }
-
-            MemoryStream ms = new MemoryStream();
-            ms.Write(imageBytes, 0, imageBytes.Length);
-            return Image.FromStream(ms);
-
-        }
+        
 
         private void loadParagraph(List<Paragraph> paragraphs, string videoFrame)
         {
