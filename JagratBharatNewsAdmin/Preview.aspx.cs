@@ -18,19 +18,9 @@ namespace JagratBharatNewsAdmin
             var ID = Request.QueryString["ID"];
             if (!IsPostBack)
             {
-                deleteAllTempFile("~/images/temp/");
                 loadData(Convert.ToInt32(ID));
             }
-            
-        }
 
-        private void deleteAllTempFile(string path)
-        {
-            DirectoryInfo directory = new DirectoryInfo(Server.MapPath(path));
-            foreach(FileInfo file in directory.GetFiles())
-            {
-                file.Delete();
-            }
         }
 
         private void loadData(int ID)
@@ -42,21 +32,15 @@ namespace JagratBharatNewsAdmin
                 Page.Title = post.HeadLine;
                 PostHeader.InnerText = post.HeadLine;
                 category.InnerText = GlobalMethods.getCategoryName(post.Category);
-                info.InnerText = post.NewsDate.Value.ToLongDateString();               
-                loadImageFromPath(loadIamge(GlobalMethods.BinaryToImage(post.Image.ToArray())));
+                info.InnerText = post.NewsDate.Value.ToLongDateString();
+                loadImageFromPath("GetImage.aspx?PostID=" + post.Id.ToString());
                 loadParagraph(paragraphs, loadVideo(post.VideoPath));
             }
         }
 
-        private string loadIamge(Image image)
-        {
-            string path = "~/images/temp/" + DateTime.Now.ToString("ddMMyyyyHHmmssFFF") + ".jpg";
-            image.Save(Server.MapPath(path));
-            Session["imgPath"] = path;
-            return path;
-        }
 
-        
+
+
 
         private void loadParagraph(List<Paragraph> paragraphs, string videoFrame)
         {
@@ -86,23 +70,8 @@ namespace JagratBharatNewsAdmin
 
         private void loadImageFromPath(string imagePath)
         {
-            heading.Style.Add("background", "linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.6)),border-box,url(" + imagePath.Remove(0,1) + "), no-repeat, center");
+            heading.Style.Add("background", "linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.6)),border-box,url(" + imagePath + "), no-repeat, center");
             heading.Style.Add(" background-size", "cover");
-        }
-
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
+        }        
     }
 }

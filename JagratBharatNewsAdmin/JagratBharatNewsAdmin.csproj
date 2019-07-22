@@ -68,8 +68,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GetImage.aspx" />
     <Content Include="Horoscope.aspx" />
-    <Content Include="ImageHandler.asmx" />
     <Content Include="images\default\1.jpg" />
     <Content Include="images\default\default.gif" />
     <Content Include="Login.aspx" />
@@ -111,6 +111,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
     </Compile>
+    <Compile Include="GetImage.aspx.cs">
+      <DependentUpon>GetImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetImage.aspx.designer.cs">
+      <DependentUpon>GetImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GlobalMethods.cs" />
     <Compile Include="Horoscope.aspx.cs">
       <DependentUpon>Horoscope.aspx</DependentUpon>
@@ -118,10 +125,6 @@
     </Compile>
     <Compile Include="Horoscope.aspx.designer.cs">
       <DependentUpon>Horoscope.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ImageHandler.asmx.cs">
-      <DependentUpon>ImageHandler.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
