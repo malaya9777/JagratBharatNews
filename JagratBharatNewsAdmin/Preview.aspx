@@ -23,14 +23,12 @@
         .justified {
             margin-top: 15px;
             text-align: justify;
-            
         }
 
         .heading {
             position: relative;
             text-align: center;
             height: 500px;
-            
         }
 
         #PostHeader {
@@ -59,12 +57,47 @@
             color: rgb(0,0,0);
         }
 
+        .footer {
+            text-align:center;            
+            background-color: rgb(42, 42, 42);
+        }
+        .btn{
+            margin:20px auto 20px auto;
+            height:50px;
+            width:250px;
+            background-color:none;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            color:#fff;
+            font-weight:bold;
+        }
+        .light-green{
+            background-color:rgb(81, 193, 86);
+        }
+        
+        .light-orange{
+            background-color:rgb(241, 158, 57);
+        }
+        .light-red{
+            background-color:rgb(245, 93, 93);
+        }
+        .light-green:hover{
+            background-color:rgb(63, 155, 67);
+        }
+        
+        .light-orange:hover{
+            background-color:rgb(170, 112, 40);
+        }
+        .light-red:hover{
+            background-color:rgb(152, 56, 56);
+        }
+
         @media(max-width:600px) {
             .heading {
                 position: relative;
                 text-align: center;
                 height: 200px;
-                
             }
 
             #PostHeader {
@@ -92,8 +125,16 @@
                     </div>
                     <div id="PostContent" runat="server"></div>
                     <div id="ads" runat="server"></div>
+
                 </article>
             </main>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn light-green" />
+                <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" CssClass="btn light-orange" />
+                <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" CssClass="btn light-red" />
+            </div>
         </div>
     </form>
 </body>
