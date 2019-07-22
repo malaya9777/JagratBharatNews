@@ -44,6 +44,7 @@ namespace JagratBharatNewsAdmin
 
             post.VideoPath = videoEmbed.Text;            
             post.ImagePath = imagePath;
+            post.Submitted = false;
             db.Posts.InsertOnSubmit(post);
             db.SubmitChanges();
             var postID = db.Posts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
