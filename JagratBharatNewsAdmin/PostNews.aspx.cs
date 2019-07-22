@@ -51,7 +51,6 @@ namespace JagratBharatNewsAdmin
             
             //Upload splited paragraph
             uploadParagraphs(splitText(txtBody.Text), postID);
-
             ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "window.open('Preview.aspx?ID=" + postID + "','_blank','location=yes,width=1000, height=800,scrollbars=yes,status=yes')", true);
 
         }
