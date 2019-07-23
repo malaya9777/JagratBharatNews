@@ -14,6 +14,7 @@ namespace JagratBharatNewsAdmin
         {
             DataDataContext db = new DataDataContext();
             int PostID = Convert.ToInt32(Request.QueryString["PostID"]);
+
             var post = db.Posts.Where(n => n.Id == PostID).SingleOrDefault();
             if (post != null)
             {

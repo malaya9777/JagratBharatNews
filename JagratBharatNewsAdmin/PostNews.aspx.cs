@@ -22,8 +22,9 @@ namespace JagratBharatNewsAdmin
 
         private void loadPostGrid()
         {
-            var posts = db.Posts.Select(n => new {n.Id, n.HeadLine,image = n.Image.ToArray(), n.Submitted }).FirstOrDefault();
-           
+            var posts = db.Posts.Select(n => new { n.Id, ImageURL= "GetImage.aspx?PostID="+n.Id,  n.HeadLine, n.Submitted }).ToList();
+            grdPost.DataSource = posts;
+            grdPost.DataBind();           
 
         }
 
@@ -104,14 +105,6 @@ namespace JagratBharatNewsAdmin
             uploadParagraphs(splitText(txtBody.Text), postID);
             ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + postID + " generated Successfully!')", true);
 
-        }
-
-        protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if(e.Row.RowType == DataControlRowType.DataRow)
-            {
-
-            }
-        }
+        }        
     }
 }

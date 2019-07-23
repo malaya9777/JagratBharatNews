@@ -18,7 +18,7 @@
         }
 
         .latestNews {
-            background-color: orangered;
+            
         }
 
         .action {
@@ -69,17 +69,25 @@
                 </div>
            
         <div class="latestNews">
-            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" AutoGenerateColumns="false" OnRowDataBound="grdPost_RowDataBound">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-HorizontalAlign="Left" AutoGenerateColumns="false" Width="100%">
                 <Columns>
-                   
-                    <asp:TemplateField>
+                   <asp:BoundField DataField="Id" HeaderText="Post ID"  />
+                    <asp:BoundField DataField="HeadLine" HeaderText="Head Line"/>                       
+                    <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>
-                            <asp:Image ID="img" runat="server" Height="20" Width="40" />
+                            <asp:Image ID="imgThumnail" runat="server" ImageUrl='<%#Eval("ImageURL") %>' Height="20" Width="40" onclick="openImage(this.src)"/>
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:BoundField DataField="Submitted" HeaderText="Submitted" />
                 </Columns>
             </asp:GridView>
             <asp:Image ID="imgTest" runat="server" />
         </div>
     </div>
+    <script>
+
+        function openImage(ImageURL) {
+            console.log(ImageURL);
+        }
+    </script>
 </asp:Content>
