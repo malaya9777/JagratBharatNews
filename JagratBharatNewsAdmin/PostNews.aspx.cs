@@ -19,7 +19,6 @@ namespace JagratBharatNewsAdmin
                 loadPostGrid();
             }
         }
-
         private void loadPostGrid()
         {
             var posts = db.Posts.Select(n => new
@@ -34,7 +33,6 @@ namespace JagratBharatNewsAdmin
             grdPost.DataBind();
 
         }
-
         private void loadCategories()
         {
             var categories = db.Categories.ToList();
@@ -43,29 +41,7 @@ namespace JagratBharatNewsAdmin
             ddlCategory.DataValueField = "Id";
             ddlCategory.DataBind();
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
-
         }
-        private string uploadImage(FileUpload imageUploader, string previewID)
-        {
-            string imagePath = "";
-
-            if (imageUploader.HasFile)
-            {
-                var name = imageUploader.FileName.Split('.');
-                var fileType = name[name.Length - 1];
-                var fileName = previewID;
-                if (fileType.ToLower() == "jpg" || fileType.ToLower() == "jpeg")
-                {
-
-                    imagePath = "~/images/temp/" + fileName + "." + fileType.ToLower();
-                    imageUploader.SaveAs(Server.MapPath(imagePath));
-
-                }
-                return imagePath;
-            }
-            return "";
-        }
-
         private void uploadParagraphs(string[] msgs, int postID)
         {
             foreach (var msg in msgs)
@@ -80,13 +56,11 @@ namespace JagratBharatNewsAdmin
                 }
             }
         }
-
         public string[] splitText(string body)
         {
             var newText = body.Replace("\n", "`");
             return newText.Split('`');
         }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             var post = new Post();
@@ -96,13 +70,8 @@ namespace JagratBharatNewsAdmin
             post.PostedOn = DateTime.Now;
             post.PostedBy = Convert.ToInt32(Session["LoginId"]);
             post.Image = fImage.FileBytes;
-
             string imageName = string.Format("{0:ddMMyyyyHHmmssFFF}", DateTime.Now);
-            //Upload Image
-            string imagePath = uploadImage(fImage, imageName);
-
-            post.VideoPath = videoEmbed.Text;
-            post.ImagePath = imagePath;
+            post.VideoPath = videoEmbed.Text;            
             post.Submitted = false;
             db.Posts.InsertOnSubmit(post);
             db.SubmitChanges();
