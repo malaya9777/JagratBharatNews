@@ -27,6 +27,8 @@ namespace JagratBharatNewsAdmin
                 ThumbnailImageURL = "GetImage.aspx?PostID=" + n.Id + "&Size=thumbnail",
                 OriginalImageURL= "GetImage.aspx?PostID=" + n.Id + "&Size=original",
                 PreviewURL = "Preview.aspx?ID="+n.Id,
+                SendButtonCss = n.Submitted==true?"btn green":"btn orange",
+                SendButtonTxt = n.Submitted == true ?"Cancle":"Send",
                 HeadLine = GlobalMethods.Truncate(n.HeadLine,10),
                 n.Submitted }).ToList();
 
@@ -70,8 +72,7 @@ namespace JagratBharatNewsAdmin
             post.NewsDate = Convert.ToDateTime(txtNewsDate.Text);
             post.PostedOn = DateTime.Now;
             post.PostedBy = Convert.ToInt32(Session["LoginId"]);
-            post.Image = fImage.FileBytes;
-            string imageName = string.Format("{0:ddMMyyyyHHmmssFFF}", DateTime.Now);
+            post.Image = fImage.FileBytes;            
             post.VideoPath = videoEmbed.Text;            
             post.Submitted = false;
             db.Posts.InsertOnSubmit(post);

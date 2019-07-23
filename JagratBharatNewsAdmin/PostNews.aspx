@@ -56,20 +56,19 @@
                         <asp:RequiredFieldValidator ID="rf2" runat="server" ControlToValidate="txtBody" ErrorMessage="*" ValidationGroup="Main" ForeColor="Red"></asp:RequiredFieldValidator>
 
                     </div>
-                    <div class="Embedvideo">
-                        <asp:TextBox runat="server" CssClass="textBox" ID="videoEmbed" Width="100%" placeholder="YouTube Video URL"></asp:TextBox>
-                    </div>
                     <div class="newsImage">
                         <asp:FileUpload runat="server" CssClass="textBox" ID="fImage" placeholder="Select Image" />
                     </div>
-
+                    <div class="Embedvideo">
+                        <asp:TextBox runat="server" CssClass="textBox" ID="videoEmbed" Width="100%" placeholder="YouTube Video URL"></asp:TextBox>
+                    </div>
                     <div class="action">                        
                         <asp:Button ID="btnSubmit" runat="server" CssClass="btn green" Text="Submit" ValidationGroup="Main" OnClick="btnSubmit_Click" />
                     </div>
                 </div>
            
         <div class="latestNews">
-            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
                 <Columns>
                    <asp:BoundField DataField="Id" HeaderText="ID"  />
                     <asp:BoundField DataField="HeadLine" HeaderText="Head Line"/>                       
@@ -78,9 +77,9 @@
                             <asp:Image ID="imgThumnail" runat="server" AlternateText='<%#Eval("OriginalImageURL") %>' ImageUrl='<%#Eval("ThumbnailImageURL") %>' Height="20" Width="40" onclick="openImage(this.alt)"/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Preview">
+                    <asp:TemplateField HeaderText="View">
                         <ItemTemplate>
-                            <a href='<%#Eval("PreviewURL") %>' target="_blank">Preview</a>
+                            <a href='<%#Eval("PreviewURL") %>' target="_blank">View</a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Edit">
@@ -88,7 +87,12 @@
                             <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn orange" CommandArgument='<%# Eval("Id")%>' CommandName="editPost"/>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Submitted" HeaderText="Submitted" />
+                    <asp:TemplateField HeaderText="Action">
+                        <ItemTemplate>
+                            <asp:Button ID="btnSubmit" runat="server" CssClass='<%# Eval("SendButtonCss")%>' Text='<%# Eval("SendButtonTxt")%>' CommandArgument='<%# Eval("Id")%>' CommandName="sendPost" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    
                 </Columns>
             </asp:GridView>
             <asp:Image ID="imgTest" runat="server" />
