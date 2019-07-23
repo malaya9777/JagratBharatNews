@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Web.Services;
 
 namespace JagratBharatNewsAdmin
 {
@@ -13,16 +15,17 @@ namespace JagratBharatNewsAdmin
         DataDataContext db = new DataDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
-            var PreviewID = Request.QueryString["PreviewID"];
+            var ID = Request.QueryString["ID"];
             if (!IsPostBack)
             {
-                loadData(PreviewID);
+                loadData(Convert.ToInt32(ID));
             }
+
         }
 
-        private void loadData(string PreviewID)
+        private void loadData(int ID)
         {
-            var post = db.TempPosts.Where(n => n.PreviewID == PreviewID).FirstOrDefault();
+            var post = db.Posts.Where(n => n.Id == ID).FirstOrDefault();
             var paragraphs = db.Paragraphs.Where(n => n.PostID == post.Id).ToList();
             if (post != null)
             {
@@ -30,11 +33,14 @@ namespace JagratBharatNewsAdmin
                 PostHeader.InnerText = post.HeadLine;
                 category.InnerText = GlobalMethods.getCategoryName(post.Category);
                 info.InnerText = post.NewsDate.Value.ToLongDateString();
-
-                loadImage(post.ImagePath);
+                loadImageFromPath("GetImage.aspx?PostID=" + post.Id+"&Size=orginal");
                 loadParagraph(paragraphs, loadVideo(post.VideoPath));
             }
         }
+
+
+
+
 
         private void loadParagraph(List<Paragraph> paragraphs, string videoFrame)
         {
@@ -54,27 +60,18 @@ namespace JagratBharatNewsAdmin
             if (videoPath != "")
             {
                 string[] splitedVideopath = videoPath.Split('/');
-                return  "<iframe width='100%' height='315' src='https://www.youtube.com/embed/"+ splitedVideopath[splitedVideopath.Length - 1]
+                return "<iframe width='100%' height='450vh' src='https://www.youtube.com/embed/" + splitedVideopath[splitedVideopath.Length - 1]
                       + "' frameborder='0' allow='accelerometer; autoplay; encrypted - media;" +
                         " gyroscope; picture -in-picture' allowfullscreen></iframe>";
-               
+
             }
             return "";
         }
 
-        private void loadImage(string imagePath)
+        private void loadImageFromPath(string imagePath)
         {
-            string _imagePath = "";
-            if (imagePath != "")
-            {
-                _imagePath = imagePath.Remove(0, 1);
-            }
-            else
-            {
-                _imagePath = "/images/default/1.jpg";
-            }
-                heading.Style.Add("background", "linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.6)),border-box,url(" + _imagePath + "), no-repeat, center");
-                heading.Style.Add(" background-size", "cover");
-        }
+            heading.Style.Add("background", "linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.6)),border-box,url(" + imagePath + "), no-repeat, center");
+            heading.Style.Add(" background-size", "cover");
+        }        
     }
 }

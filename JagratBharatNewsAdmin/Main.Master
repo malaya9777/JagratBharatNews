@@ -99,13 +99,10 @@
 
         @media (max-width:1200px) {
             body {
-                background-color: black;
-                display: none;
+                
             }
 
-                body:after {
-                    content: "This page is not designed for Mobile or Tablet view, please switch to Desktop or Laptop";
-                }
+                
         }
     </style>
 </head>

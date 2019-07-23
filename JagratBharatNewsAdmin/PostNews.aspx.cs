@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web.Security;
@@ -14,7 +16,22 @@ namespace JagratBharatNewsAdmin
             if (!IsPostBack)
             {
                 loadCategories();
+                loadPostGrid();
             }
+        }
+        private void loadPostGrid()
+        {
+            var posts = db.Posts.Select(n => new
+            {
+                n.Id,
+                ThumbnailImageURL = "GetImage.aspx?PostID=" + n.Id + "&Size=thumbnail",
+                OriginalImageURL= "GetImage.aspx?PostID=" + n.Id + "&Size=original",
+                PreviewURL = "Preview.aspx?ID="+n.Id,
+                n.HeadLine,
+                n.Submitted }).ToList();
+            grdPost.DataSource = posts;
+            grdPost.DataBind();
+
         }
         private void loadCategories()
         {
@@ -24,55 +41,7 @@ namespace JagratBharatNewsAdmin
             ddlCategory.DataValueField = "Id";
             ddlCategory.DataBind();
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
-            
         }
-        protected void btnPreview_Click(object sender, EventArgs e)
-        {
-            var tempPost = new TempPost();
-            tempPost.HeadLine = txtHeadline.Text;
-
-            tempPost.Category = Convert.ToInt32(ddlCategory.SelectedValue);
-            tempPost.NewsDate = Convert.ToDateTime(txtNewsDate.Text);
-            tempPost.PostedOn = DateTime.Now;
-            tempPost.PostedBy = Convert.ToInt32(Session["LoginId"]);
-            string imagePath = "";
-            string previewID = string.Format("{0:ddMMyyyyHHmmssFFF}", DateTime.Now);
-            //Upload Image
-            uploadImage(fImage, previewID);
-
-            tempPost.VideoPath = videoEmbed.Text;
-            tempPost.PreviewID = previewID;
-            tempPost.ImagePath = imagePath;
-            db.TempPosts.InsertOnSubmit(tempPost);
-            db.SubmitChanges();
-            var postID = db.TempPosts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
-            
-            //Upload splited paragraph
-            uploadParagraphs(splitText(txtBody.Text), postID);
-
-            ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "window.open('Preview.aspx?PreviewID=" + previewID + "','_blank','location=yes,width=1000, height=800,scrollbars=yes,status=yes')", true);
-            Session["PreviewID"] = previewID;
-        }
-
-        private string uploadImage(FileUpload imageUploader, string previewID)
-        {
-            string imagePath = "";
-            if (imageUploader.HasFile)
-            {
-                var name = imageUploader.FileName.Split('.');
-                var fileType = name[name.Length - 1];
-                var fileName = previewID;
-                if (fileType.ToLower() == "jpg" || fileType.ToLower() == "jpeg")
-                {
-                    imagePath = "~/images/temp/" + fileName + "." + fileType.ToLower();
-                    imageUploader.SaveAs(Server.MapPath(imagePath));
-
-                }
-                return imagePath;
-            }
-            return "";
-        }
-
         private void uploadParagraphs(string[] msgs, int postID)
         {
             foreach (var msg in msgs)
@@ -87,16 +56,31 @@ namespace JagratBharatNewsAdmin
                 }
             }
         }
-
         public string[] splitText(string body)
         {
             var newText = body.Replace("\n", "`");
             return newText.Split('`');
         }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Session.Remove("PreviewID");
+            var post = new Post();
+            post.HeadLine = txtHeadline.Text;
+            post.Category = Convert.ToInt32(ddlCategory.SelectedValue);
+            post.NewsDate = Convert.ToDateTime(txtNewsDate.Text);
+            post.PostedOn = DateTime.Now;
+            post.PostedBy = Convert.ToInt32(Session["LoginId"]);
+            post.Image = fImage.FileBytes;
+            string imageName = string.Format("{0:ddMMyyyyHHmmssFFF}", DateTime.Now);
+            post.VideoPath = videoEmbed.Text;            
+            post.Submitted = false;
+            db.Posts.InsertOnSubmit(post);
+            db.SubmitChanges();
+            var postID = db.Posts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
+
+            //Upload splited paragraph
+            uploadParagraphs(splitText(txtBody.Text), postID);
+            ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + postID + " generated Successfully!')", true);
+
         }
     }
 }

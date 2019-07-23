@@ -29,6 +29,10 @@ namespace JagratBharatNewsAdmin
                     FormsAuthentication.RedirectFromLoginPage(userName, chkRememberMe.Checked);
 
                 }
+                else
+                {
+                   
+                }
             }
         }
         private bool AuthorisedUser(string userName, string password)

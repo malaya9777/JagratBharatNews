@@ -18,7 +18,7 @@
         }
 
         .latestNews {
-            background-color: orangered;
+            
         }
 
         .action {
@@ -36,8 +36,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-      
+    <div class="container">      
                 <div class="postNews">
                     <div class="newsCategory">
                         <asp:DropDownList runat="server" ID="ddlCategory" CssClass="textBox"></asp:DropDownList>
@@ -64,13 +63,41 @@
                         <asp:FileUpload runat="server" CssClass="textBox" ID="fImage" placeholder="Select Image" />
                     </div>
 
-                    <div class="action">
-                        <asp:Button ID="btnPreview" runat="server" CssClass="btn orange" Text="Preview" OnClick="btnPreview_Click" />
+                    <div class="action">                        
                         <asp:Button ID="btnSubmit" runat="server" CssClass="btn green" Text="Submit" ValidationGroup="Main" OnClick="btnSubmit_Click" />
                     </div>
                 </div>
            
         <div class="latestNews">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-HorizontalAlign="Left" AutoGenerateColumns="false" Width="100%">
+                <Columns>
+                   <asp:BoundField DataField="Id" HeaderText="Post ID"  />
+                    <asp:BoundField DataField="HeadLine" HeaderText="Head Line"/>                       
+                    <asp:TemplateField HeaderText="Image">
+                        <ItemTemplate>
+                            <asp:Image ID="imgThumnail" runat="server" AlternateText='<%#Eval("OriginalImageURL") %>' ImageUrl='<%#Eval("ThumbnailImageURL") %>' Height="20" Width="40" onclick="openImage(this.alt)"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Preview">
+                        <ItemTemplate>
+                            <a href='<%#Eval("PreviewURL") %>' target="_blank">Preview</a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Edit">
+                        <ItemTemplate>
+                            <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn orange" CommandArgument='<%# Eval("Id")%>' CommandName="editPost"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="Submitted" HeaderText="Submitted" />
+                </Columns>
+            </asp:GridView>
+            <asp:Image ID="imgTest" runat="server" />
         </div>
     </div>
+    <script>
+
+        function openImage(ImageURL) {
+            console.log(ImageURL);
+        }
+    </script>
 </asp:Content>

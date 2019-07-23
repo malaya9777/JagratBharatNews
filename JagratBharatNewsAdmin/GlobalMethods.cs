@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +24,18 @@ namespace JagratBharatNewsAdmin
                     return 0;
                 }
             }
+        }
+        public static Image BinaryToImage(byte[] imageBytes)
+        {
+            if (imageBytes == null)
+            {
+                return null;
+            }
+
+            MemoryStream ms = new MemoryStream();
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            return Image.FromStream(ms);
+
         }
         public static string getUserName(int? UserID)
         {
