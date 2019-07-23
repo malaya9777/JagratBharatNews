@@ -85,7 +85,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>
-                            <asp:Button ID="btnEdit" runat="server" CommandArgument='<%# Eval("Id")%>' CommandName="editPost"/>
+                            <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn orange" CommandArgument='<%# Eval("Id")%>' CommandName="editPost"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Submitted" HeaderText="Submitted" />
