@@ -75,7 +75,17 @@
                     <asp:BoundField DataField="HeadLine" HeaderText="Head Line"/>                       
                     <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>
-                            <asp:Image ID="imgThumnail" runat="server" ImageUrl='<%#Eval("ImageURL") %>' Height="20" Width="40" onclick="openImage(this.src)"/>
+                            <asp:Image ID="imgThumnail" runat="server" AlternateText='<%#Eval("OriginalImageURL") %>' ImageUrl='<%#Eval("ThumbnailImageURL") %>' Height="20" Width="40" onclick="openImage(this.alt)"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Preview">
+                        <ItemTemplate>
+                            <a href='<%#Eval("PreviewURL") %>' target="_blank">Preview</a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Edit">
+                        <ItemTemplate>
+                            <asp:Button ID="btnEdit" runat="server" CommandArgument='<%# Eval("Id")%>' CommandName="editPost"/>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Submitted" HeaderText="Submitted" />
