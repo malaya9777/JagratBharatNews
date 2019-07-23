@@ -33,7 +33,7 @@ namespace JagratBharatNewsAdmin
                 PostHeader.InnerText = post.HeadLine;
                 category.InnerText = GlobalMethods.getCategoryName(post.Category);
                 info.InnerText = post.NewsDate.Value.ToLongDateString();
-                loadImageFromPath("GetImage.aspx?PostID=" + post.Id+"&Size=orginal");
+                loadImageFromPath("ImageHandler.ashx?PostID=" + post.Id+"&Size=orginal");
                 loadParagraph(paragraphs, loadVideo(post.VideoPath));
             }
         }

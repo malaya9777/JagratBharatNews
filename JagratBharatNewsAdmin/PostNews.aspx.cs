@@ -24,8 +24,8 @@ namespace JagratBharatNewsAdmin
             var posts = db.Posts.Select(n => new
             {
                 n.Id,
-                ThumbnailImageURL = "GetImage.aspx?PostID=" + n.Id + "&Size=thumbnail",
-                OriginalImageURL= "GetImage.aspx?PostID=" + n.Id + "&Size=original",
+                ThumbnailImageURL = "ImageHandler.ashx?PostID=" + n.Id + "&Size=thumbnail",
+                OriginalImageURL= "ImageHandler.ashx?PostID=" + n.Id + "&Size=original",
                 PreviewURL = "Preview.aspx?ID="+n.Id,
                 SendButtonCss = n.Submitted==true?"btn green":"btn orange",
                 SendButtonTxt = n.Submitted == true ?"Cancle":"Send",

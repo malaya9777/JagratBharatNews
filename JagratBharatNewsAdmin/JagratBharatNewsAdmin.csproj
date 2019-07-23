@@ -82,6 +82,7 @@
     <None Include="Data.dbml.layout">
       <DependentUpon>Data.dbml</DependentUpon>
     </None>
+    <Content Include="ImageHandler.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -125,6 +126,9 @@
     </Compile>
     <Compile Include="Horoscope.aspx.designer.cs">
       <DependentUpon>Horoscope.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
