@@ -27,7 +27,7 @@ namespace JagratBharatNewsAdmin
                 ThumbnailImageURL = "GetImage.aspx?PostID=" + n.Id + "&Size=thumbnail",
                 OriginalImageURL= "GetImage.aspx?PostID=" + n.Id + "&Size=original",
                 PreviewURL = "Preview.aspx?ID="+n.Id,
-                n.HeadLine,
+                HeadLine = GlobalMethods.Truncate(n.HeadLine,10),
                 n.Submitted }).ToList();
             grdPost.DataSource = posts;
             grdPost.DataBind();
