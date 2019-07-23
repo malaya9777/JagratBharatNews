@@ -6,7 +6,7 @@
         .container {
             max-width: 85%;
             margin: 30px 50px auto auto;
-            grid-template-columns: 60% 35%;
+            grid-template-columns: 55% 40%;
             display: grid;
             grid-gap: 10px;
         }
@@ -28,7 +28,7 @@
         @media (max-width:1400px) {
             .container {
                 width: 80%;
-                grid-template-columns: 60% 35%;
+                grid-template-columns: 50% 50%;
                 display: grid;
                 grid-gap: 10px;
             }
@@ -43,7 +43,7 @@
                         <asp:RequiredFieldValidator ID="rf3" runat="server" ControlToValidate="ddlCategory" ValidationGroup="Main" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="newsHeadline">
-                        <asp:TextBox runat="server" CssClass="textBox" ID="txtHeadline" placeholder="News Headline" Width="500px"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="textBox" ID="txtHeadline" placeholder="News Headline" Width="100%"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rf1" runat="server" ControlToValidate="txtHeadline" ValidationGroup="Main" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="newsDate">
@@ -52,12 +52,12 @@
                         <asp:CalendarExtender TargetControlID="txtNewsDate" Format="dd-MMM-yyyy" runat="server" ID="ce1" />
                     </div>
                     <div class="newsBody">
-                        <asp:TextBox runat="server" CssClass="textBox" ID="txtBody" placeholder="News Body" TextMode="MultiLine" Height="500px" Width="500px"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="textBox" ID="txtBody" placeholder="News Body" TextMode="MultiLine" Height="500px" Width="100%"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rf2" runat="server" ControlToValidate="txtBody" ErrorMessage="*" ValidationGroup="Main" ForeColor="Red"></asp:RequiredFieldValidator>
 
                     </div>
                     <div class="Embedvideo">
-                        <asp:TextBox runat="server" CssClass="textBox" ID="videoEmbed" Width="500px" placeholder="YouTube Video URL"></asp:TextBox>
+                        <asp:TextBox runat="server" CssClass="textBox" ID="videoEmbed" Width="100%" placeholder="YouTube Video URL"></asp:TextBox>
                     </div>
                     <div class="newsImage">
                         <asp:FileUpload runat="server" CssClass="textBox" ID="fImage" placeholder="Select Image" />
@@ -69,9 +69,9 @@
                 </div>
            
         <div class="latestNews">
-            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-HorizontalAlign="Left" AutoGenerateColumns="false" Width="100%">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
                 <Columns>
-                   <asp:BoundField DataField="Id" HeaderText="Post ID"  />
+                   <asp:BoundField DataField="Id" HeaderText="ID"  />
                     <asp:BoundField DataField="HeadLine" HeaderText="Head Line"/>                       
                     <asp:TemplateField HeaderText="Image">
                         <ItemTemplate>

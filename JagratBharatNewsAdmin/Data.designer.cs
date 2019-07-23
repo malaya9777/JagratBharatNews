@@ -1248,8 +1248,6 @@ namespace JagratBharatNewsAdmin
 		
 		private System.Nullable<System.DateTime> _NewsDate;
 		
-		private string _ImagePath;
-		
 		private System.Data.Linq.Binary _Image;
 		
 		private string _VideoPath;
@@ -1274,8 +1272,6 @@ namespace JagratBharatNewsAdmin
     partial void OnCategoryChanged();
     partial void OnNewsDateChanging(System.Nullable<System.DateTime> value);
     partial void OnNewsDateChanged();
-    partial void OnImagePathChanging(string value);
-    partial void OnImagePathChanged();
     partial void OnImageChanging(System.Data.Linq.Binary value);
     partial void OnImageChanged();
     partial void OnVideoPathChanging(string value);
@@ -1389,26 +1385,6 @@ namespace JagratBharatNewsAdmin
 					this._NewsDate = value;
 					this.SendPropertyChanged("NewsDate");
 					this.OnNewsDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImagePath", DbType="VarChar(300)")]
-		public string ImagePath
-		{
-			get
-			{
-				return this._ImagePath;
-			}
-			set
-			{
-				if ((this._ImagePath != value))
-				{
-					this.OnImagePathChanging(value);
-					this.SendPropertyChanging();
-					this._ImagePath = value;
-					this.SendPropertyChanged("ImagePath");
-					this.OnImagePathChanged();
 				}
 			}
 		}

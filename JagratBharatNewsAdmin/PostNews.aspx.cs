@@ -29,6 +29,7 @@ namespace JagratBharatNewsAdmin
                 PreviewURL = "Preview.aspx?ID="+n.Id,
                 HeadLine = GlobalMethods.Truncate(n.HeadLine,10),
                 n.Submitted }).ToList();
+
             grdPost.DataSource = posts;
             grdPost.DataBind();
 
