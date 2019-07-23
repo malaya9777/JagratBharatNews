@@ -25,6 +25,10 @@ namespace JagratBharatNewsAdmin
                 }
             }
         }
+        public static string Truncate(string value, int maxChars)
+        {
+            return value.Length <= maxChars ? value : value.Substring(0, maxChars) + "...";
+        }
         public static Image BinaryToImage(byte[] imageBytes)
         {
             if (imageBytes == null)
