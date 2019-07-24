@@ -48,6 +48,8 @@ namespace JagratBharatNewsAdmin
             ddlCategory.DataBind();
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
         }
+
+        // Upload Paragraph
         private void uploadParagraphs(string[] msgs, int postID)
         {
             foreach (var msg in msgs)
@@ -62,11 +64,13 @@ namespace JagratBharatNewsAdmin
                 }
             }
         }
+        // Split text in String Array
         public string[] splitText(string body)
         {
             var newText = body.Replace("\n", "`");
             return newText.Split('`');
         }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             Post post;
@@ -114,19 +118,22 @@ namespace JagratBharatNewsAdmin
                 ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + post.Id + " updated Successfully!')", true);
             }
             resetAll(sender, e);
+            
         }
 
+        // Relode the page
         private void resetAll(object sender, EventArgs e)
         {
             Response.Redirect(Request.RawUrl);
         }
-
+        // Remove Old paragraph to add new Paragraph
         private void removeOldParagraphs(int id)
         {
             var paragraphs = db.Paragraphs.Where(n => n.PostID == id);
             db.Paragraphs.DeleteAllOnSubmit(paragraphs);
             db.SubmitChanges();
         }
+
 
         protected void grdPost_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -137,10 +144,29 @@ namespace JagratBharatNewsAdmin
             }
             else if (e.CommandName == "sendPost")
             {
-
+                submitPost(PostID);
             }
         }
 
+
+        // Change Submit status to true to make it public
+        private void submitPost(int postID)
+        {
+            var post = db.Posts.Where(n => n.Id == postID).SingleOrDefault();
+            if (post.Submitted == true)
+            {
+                post.Submitted = false;
+            }
+            else
+            {
+                post.Submitted = true;
+            }
+            db.SubmitChanges();
+            loadPostGrid();
+        }
+
+
+        // Load Data to Edit Panel
         private void loadDatatoEdit(int postID)
         {
             Session["PostID"] = postID;
@@ -149,11 +175,13 @@ namespace JagratBharatNewsAdmin
             ddlCategory.SelectedValue = post.Category.ToString();
             txtHeadline.Text = post.HeadLine;
             txtNewsDate.Text = Convert.ToDateTime(post.NewsDate).ToString("dd-MMM-yyyy");
-            txtBody.Text = uploadParagraphs(postID);
+            txtBody.Text = loadParagraphs(postID);
             videoEmbed.Text = post.VideoPath;
             loadImagePreview(postID);
         }
 
+
+        // Load Image Preview in the side of FileUploader
         private void loadImagePreview(int postID)
         {
             imgPreview.Visible = true;
@@ -165,7 +193,9 @@ namespace JagratBharatNewsAdmin
             imgPreview.AlternateText = "ImageHandler.ashx?PostID=" + postID + "&Size=original";
         }
 
-        private string uploadParagraphs(int postID)
+
+        // Upload paragraph into each new reocrds
+        private string loadParagraphs(int postID)
         {
             var paragraphs = db.Paragraphs.Where(n => n.PostID == postID).ToList();
             string _paragraph = "";
