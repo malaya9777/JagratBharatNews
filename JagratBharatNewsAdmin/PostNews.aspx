@@ -88,7 +88,7 @@
             </div>
             <div class="newsImage">
                 <asp:FileUpload runat="server" CssClass="textBox" ID="fImage" placeholder="Select Image" />
-                <asp:Image runat="server" Height="20" Width="40" ID="imgPreview" />
+                <asp:Image runat="server" Height="20" Width="40" ID="imgPreview" onclick="CreatePreview(this.alt)" />
             </div>
             <div class="Embedvideo">
                 <asp:TextBox runat="server" CssClass="textBox" ID="videoEmbed" Width="100%" placeholder="YouTube Video URL"></asp:TextBox>
