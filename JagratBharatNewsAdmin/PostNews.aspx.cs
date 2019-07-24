@@ -13,8 +13,10 @@ namespace JagratBharatNewsAdmin
         DataDataContext db = new DataDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
+            imgPreview.Visible = false;
             if (!IsPostBack)
             {
+                Session.Remove("PostID");
                 loadCategories();
                 loadPostGrid();
             }
@@ -25,12 +27,13 @@ namespace JagratBharatNewsAdmin
             {
                 n.Id,
                 ThumbnailImageURL = "ImageHandler.ashx?PostID=" + n.Id + "&Size=thumbnail",
-                OriginalImageURL= "ImageHandler.ashx?PostID=" + n.Id + "&Size=original",
-                PreviewURL = "Preview.aspx?ID="+n.Id,
-                SendButtonCss = n.Submitted==true?"btn green":"btn orange",
-                SendButtonTxt = n.Submitted == true ?"Cancle":"Send",
-                HeadLine = GlobalMethods.Truncate(n.HeadLine,10),
-                n.Submitted }).ToList();
+                OriginalImageURL = "ImageHandler.ashx?PostID=" + n.Id + "&Size=original",
+                PreviewURL = "Preview.aspx?ID=" + n.Id,
+                SendButtonCss = n.Submitted == true ? "btn green" : "btn orange",
+                SendButtonTxt = n.Submitted == true ? "Cancle" : "Send",
+                HeadLine = GlobalMethods.Truncate(n.HeadLine, 10),
+                n.Submitted
+            }).ToList();
 
             grdPost.DataSource = posts;
             grdPost.DataBind();
@@ -66,23 +69,111 @@ namespace JagratBharatNewsAdmin
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            var post = new Post();
+            Post post;
+            bool recordExists;
+            if (Session["PostID"] != null)
+            {
+                int ID = Convert.ToInt32(Session["PostID"]);
+                post = db.Posts.Where(n => n.Id == ID).SingleOrDefault();
+                recordExists = true;
+            }
+            else
+            {
+                post = new Post();
+                recordExists = false;
+                //To Load the previous status
+
+            }
             post.HeadLine = txtHeadline.Text;
             post.Category = Convert.ToInt32(ddlCategory.SelectedValue);
             post.NewsDate = Convert.ToDateTime(txtNewsDate.Text);
             post.PostedOn = DateTime.Now;
             post.PostedBy = Convert.ToInt32(Session["LoginId"]);
-            post.Image = fImage.FileBytes;            
-            post.VideoPath = videoEmbed.Text;            
-            post.Submitted = false;
-            db.Posts.InsertOnSubmit(post);
+            if (fImage.HasFile)
+            {
+                post.Image = fImage.FileBytes;
+            }
+            post.VideoPath = videoEmbed.Text;
+            if (!recordExists)
+            {
+                post.Submitted = false;
+                db.Posts.InsertOnSubmit(post);
+                db.SubmitChanges();
+                var postID = db.Posts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
+
+                //Upload splited paragraph
+                uploadParagraphs(splitText(txtBody.Text), postID);
+                ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + postID + " generated Successfully!')", true);
+            }
+            else
+            {
+
+                db.SubmitChanges();
+                removeOldParagraphs(post.Id);
+                uploadParagraphs(splitText(txtBody.Text), post.Id);
+                ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + post.Id + " updated Successfully!')", true);
+            }
+            resetAll(sender, e);
+        }
+
+        private void resetAll(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.RawUrl);
+        }
+
+        private void removeOldParagraphs(int id)
+        {
+            var paragraphs = db.Paragraphs.Where(n => n.PostID == id);
+            db.Paragraphs.DeleteAllOnSubmit(paragraphs);
             db.SubmitChanges();
-            var postID = db.Posts.OrderByDescending(n => n.Id).Select(n => n.Id).OrderByDescending(n => n).FirstOrDefault();
+        }
 
-            //Upload splited paragraph
-            uploadParagraphs(splitText(txtBody.Text), postID);
-            ClientScript.RegisterClientScriptBlock(Page.GetType(), "loadBlank", "alert('Post ID:" + postID + " generated Successfully!')", true);
+        protected void grdPost_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            var PostID = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName == "editPost")
+            {
+                loadDatatoEdit(PostID);
+            }
+            else if (e.CommandName == "sendPost")
+            {
 
+            }
+        }
+
+        private void loadDatatoEdit(int postID)
+        {
+            Session["PostID"] = postID;
+            btnSubmit.Text = "Update";
+            var post = db.Posts.Where(n => n.Id == postID).FirstOrDefault();
+            ddlCategory.SelectedValue = post.Category.ToString();
+            txtHeadline.Text = post.HeadLine;
+            txtNewsDate.Text = Convert.ToDateTime(post.NewsDate).ToString("dd-MMM-yyyy");
+            txtBody.Text = uploadParagraphs(postID);
+            videoEmbed.Text = post.VideoPath;
+            loadImagePreview(postID);
+        }
+
+        private void loadImagePreview(int postID)
+        {
+            imgPreview.Visible = true;
+            imgPreview.ImageAlign = ImageAlign.AbsMiddle;
+            imgPreview.BorderStyle = BorderStyle.Solid;
+            imgPreview.BorderWidth = 5;
+            imgPreview.BorderColor = Color.Orange;
+            imgPreview.ImageUrl = "ImageHandler.ashx?PostID=" + postID + "&Size=thumbnail";
+            imgPreview.AlternateText = "ImageHandler.ashx?PostID=" + postID + "&Size=original";
+        }
+
+        private string uploadParagraphs(int postID)
+        {
+            var paragraphs = db.Paragraphs.Where(n => n.PostID == postID).ToList();
+            string _paragraph = "";
+            foreach (var paragraph in paragraphs)
+            {
+                _paragraph += paragraph.Paragraphs + "\n";
+            }
+            return _paragraph;
         }
     }
 }

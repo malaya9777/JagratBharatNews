@@ -58,6 +58,7 @@
                     </div>
                     <div class="newsImage">
                         <asp:FileUpload runat="server" CssClass="textBox" ID="fImage" placeholder="Select Image" />
+                        <asp:Image runat="server" Height="20" Width="40" ID="imgPreview" />
                     </div>
                     <div class="Embedvideo">
                         <asp:TextBox runat="server" CssClass="textBox" ID="videoEmbed" Width="100%" placeholder="YouTube Video URL"></asp:TextBox>
@@ -68,7 +69,7 @@
                 </div>
            
         <div class="latestNews">
-            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" OnRowCommand="grdPost_RowCommand" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
                 <Columns>
                    <asp:BoundField DataField="Id" HeaderText="ID"  />
                     <asp:BoundField DataField="HeadLine" HeaderText="Head Line"/>                       
