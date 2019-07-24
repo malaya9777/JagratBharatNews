@@ -3,8 +3,7 @@ let menu = document.getElementById('menu');
 let close = document.getElementById('close');
 let floatingMenu = document.getElementById('floatingMenu');
 menu.addEventListener("click",function(){
-    floatingMenu.classList.add('fadeIn');
-    
+    floatingMenu.classList.add('fadeIn');    
     
 });
 close.addEventListener("click",function(){

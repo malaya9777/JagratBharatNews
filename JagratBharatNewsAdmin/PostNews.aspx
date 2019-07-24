@@ -6,7 +6,7 @@
         .container {
             max-width: 85%;
             margin: 30px 50px auto auto;
-            grid-template-columns: 55% 40%;
+            grid-template-columns: 50% 50%;
             display: grid;
             grid-gap: 10px;
         }
@@ -18,41 +18,55 @@
         }
 
         .latestNews {
+            border: 1px solid rgba(0,0,0,.1);
+            border-radius: 5px;
+            padding: 10px;
         }
 
         .action {
             margin-top: 10px;
         }
-        .previewPanle{
-            position:fixed;
-            height:95vh;
-            width:95vw;
-            top:2.5vh;
-            left:2.5vw;
-            border-radius:5px;
-            background-color:rgb(49, 49, 49);
-            text-align:center;
-        }
-        .previewPanle>img{
-            margin-top:20vh;
-            height:auto;
-            width:60vw;
 
+        .previewPanle {
+            position: fixed;
+            height: 95vh;
+            width: 95vw;
+            top: 2.5vh;
+            left: 2.5vw;
+            border-radius: 5px;
+            background-color: rgb(49, 49, 49);
+            text-align: center;
         }
-        .previewPanle>div{
-            position:absolute;
-            top:10px;
-            right:15px;
-            height:50px;
-            width:50px;
-            font-size:38px;
-            font-weight:bold;
-            border-radius:100%;
-            
-            color:rgb(49, 49, 49);
-            vertical-align:middle;
-            background-color:white;
-            cursor:pointer;
+
+        @keyframes fadeIn {
+            from {
+                background-color: rgba(49, 49, 49, 0);
+            }
+
+            to {
+                background-color: rgba(49, 49, 49,1);
+            }
+        }
+
+        .previewPanle > img {
+            margin-top: 20vh;
+            height: auto;
+            width: 60vw;
+        }
+
+        .previewPanle > div {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            height: 50px;
+            width: 50px;
+            font-size: 38px;
+            font-weight: bold;
+            border-radius: 100%;
+            color: rgb(49, 49, 49);
+            vertical-align: middle;
+            background-color: white;
+            cursor: pointer;
         }
 
         @media (max-width:1400px) {
@@ -68,6 +82,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="postNews">
+            <div>
+                <h3>Create Post</h3>
+            </div>
             <div class="newsCategory">
                 <asp:DropDownList runat="server" ID="ddlCategory" CssClass="textBox"></asp:DropDownList>
                 <asp:RequiredFieldValidator ID="rf3" runat="server" ControlToValidate="ddlCategory" ValidationGroup="Main" InitialValue="0" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -82,7 +99,7 @@
                 <asp:CalendarExtender TargetControlID="txtNewsDate" Format="dd-MMM-yyyy" runat="server" ID="ce1" />
             </div>
             <div class="newsBody">
-                <asp:TextBox runat="server" CssClass="textBox" ID="txtBody" placeholder="News Body" TextMode="MultiLine" Height="500px" Width="100%"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="textBox" ID="txtBody" placeholder="News Body" TextMode="MultiLine" Height="200px" Width="100%"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rf2" runat="server" ControlToValidate="txtBody" ErrorMessage="*" ValidationGroup="Main" ForeColor="Red"></asp:RequiredFieldValidator>
 
             </div>
@@ -131,10 +148,10 @@
     </div>
     <script>
         function CreatePreview(ImageURL) {
-            document.body.innerHTML += "<div class='previewPanle' id='previewPanel'><div onclick='remove()'>X</div><img src='"+ImageURL+"'></div>";
+            document.body.innerHTML += "<div class='previewPanle fadeIn' id='previewPanel'><div onclick='remove()'>X</div><img src='" + ImageURL + "'></div>";
 
         };
-        function remove(){
+        function remove() {
             var previewPanel = document.getElementById("previewPanel");
             previewPanel.remove();
         };

@@ -33,7 +33,7 @@ namespace JagratBharatNewsAdmin
                 PreviewURL = "Preview.aspx?ID=" + n.Id,
                 SendButtonCss = n.Submitted == true ? "btn green" : "btn orange",
                 SendButtonTxt = n.Submitted == true ? "Cancle" : "Send",
-                HeadLine = GlobalMethods.Truncate(n.HeadLine, 10),
+                HeadLine = GlobalMethods.Truncate(n.HeadLine, 15),
                 n.Submitted
             }).ToList();
 
