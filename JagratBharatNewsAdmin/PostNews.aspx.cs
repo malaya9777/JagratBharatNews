@@ -11,6 +11,7 @@ namespace JagratBharatNewsAdmin
     public partial class PostNews : System.Web.UI.Page
     {
         DataDataContext db = new DataDataContext();
+        // Initial Page Load
         protected void Page_Load(object sender, EventArgs e)
         {
             imgPreview.Visible = false;
@@ -21,6 +22,7 @@ namespace JagratBharatNewsAdmin
                 loadPostGrid();
             }
         }
+        // Load Post GridView
         private void loadPostGrid()
         {
             var posts = db.Posts.Select(n => new
@@ -39,6 +41,7 @@ namespace JagratBharatNewsAdmin
             grdPost.DataBind();
 
         }
+        // Load Categories to dropdown
         private void loadCategories()
         {
             var categories = db.Categories.ToList();
@@ -49,7 +52,7 @@ namespace JagratBharatNewsAdmin
             ddlCategory.Items.Insert(0, new ListItem("Select Category", "0"));
         }
 
-        // Upload Paragraph
+        // Upload each Paragraphs into new Records 
         private void uploadParagraphs(string[] msgs, int postID)
         {
             foreach (var msg in msgs)
@@ -64,7 +67,8 @@ namespace JagratBharatNewsAdmin
                 }
             }
         }
-        // Split text in String Array
+       
+        // Split text into String Array
         public string[] splitText(string body)
         {
             var newText = body.Replace("\n", "`");
@@ -126,6 +130,8 @@ namespace JagratBharatNewsAdmin
         {
             Response.Redirect(Request.RawUrl);
         }
+        
+        
         // Remove Old paragraph to add new Paragraph
         private void removeOldParagraphs(int id)
         {
@@ -194,7 +200,7 @@ namespace JagratBharatNewsAdmin
         }
 
 
-        // Upload paragraph into each new reocrds
+        // To retrice Paragraph from Paragraphs table and insert to 
         private string loadParagraphs(int postID)
         {
             var paragraphs = db.Paragraphs.Where(n => n.PostID == postID).ToList();
