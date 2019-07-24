@@ -95,7 +95,6 @@
     <Content Include="ManageUser.aspx" />
     <Content Include="PostNews.aspx" />
     <Content Include="Preview.aspx" />
-    <Content Include="Script\ImagePreviewer.js" />
     <Content Include="Signout.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

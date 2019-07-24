@@ -200,7 +200,7 @@ namespace JagratBharatNewsAdmin
         }
 
 
-        // To retrice Paragraph from Paragraphs table and insert to 
+        // To retrice Paragraph from Paragraphs table and insert to multiline textbox  
         private string loadParagraphs(int postID)
         {
             var paragraphs = db.Paragraphs.Where(n => n.PostID == postID).ToList();
