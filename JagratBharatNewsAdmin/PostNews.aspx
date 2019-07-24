@@ -35,8 +35,8 @@
         }
         .previewPanle>img{
             margin-top:20vh;
-            height:60vh;
-            width:auto;
+            height:auto;
+            width:60vw;
 
         }
         .previewPanle>div{
@@ -99,7 +99,7 @@
         </div>
 
         <div class="latestNews">
-            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" OnRowCommand="grdPost_RowCommand" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
+            <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" OnRowCommand="grdPost_RowCommand" AllowPaging="true" PageSize="10" OnPageIndexChanging="grdPost_PageIndexChanging" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="ID" />
                     <asp:BoundField DataField="HeadLine" HeaderText="Head Line" />

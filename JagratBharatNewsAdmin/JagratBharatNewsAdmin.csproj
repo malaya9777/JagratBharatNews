@@ -71,6 +71,7 @@
     <Content Include="Horoscope.aspx" />
     <Content Include="images\default\1.jpg" />
     <Content Include="images\default\default.gif" />
+    <Content Include="images\default\user.png" />
     <Content Include="Login.aspx" />
     <Content Include="Main.Master" />
     <Content Include="Data.dbml">

@@ -110,7 +110,7 @@
     <form id="form1" runat="server">
         <nav class="navigationBar">
             <div class="userInfo">
-                <img id="userImg" class="userImage" src="images/user.png" />
+                <img id="userImg" class="userImage" src="images/default/user.png" />
                 <asp:Label ID="userName" runat="server" CssClass="userName"></asp:Label>
             </div>
             <div class="menuList">

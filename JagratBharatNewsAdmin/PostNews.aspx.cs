@@ -211,5 +211,11 @@ namespace JagratBharatNewsAdmin
             }
             return _paragraph;
         }
+
+        protected void grdPost_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grdPost.PageIndex = e.NewPageIndex;
+            loadPostGrid();
+        }
     }
 }
