@@ -9,9 +9,27 @@ namespace JagratBharatNewsAdmin
         DataDataContext db = new DataDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 loadInitialValues();
+            }
+        }
+
+
+        // Load edit data to textboxes
+        private void loadEditData(int horoscopeID)
+        {
+            if (horoscopeID != 0)
+            {
+                Session["horoscopeID"] = horoscopeID;
+                var hs = db.Horoscopes.Where(n => n.Id == horoscopeID).SingleOrDefault();
+                txtDate.Text = Convert.ToDateTime(hs.Date).ToString("dd-MMM-yyyy");
+                txtHoroscope.Text = hs.Horoscope_English;
+                ddlZodiac.SelectedValue = hs.Zodiac_ID.ToString();
+                btnSubmit.Text = "Update";
+
+
             }
         }
 
@@ -78,14 +96,51 @@ namespace JagratBharatNewsAdmin
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Horoscope horoscope = new Horoscope();
-            horoscope.Zodiac_ID = Convert.ToInt32(ddlZodiac.SelectedValue);
-            horoscope.Date = Convert.ToDateTime(txtDate.Text);
-            horoscope.Horoscope_English = txtHoroscope.Text;
-            db.Horoscopes.InsertOnSubmit(horoscope);
+
+            var horoscopeID = horoscopeExists(Convert.ToInt32(ddlZodiac.SelectedValue), Convert.ToDateTime(txtDate.Text));
+            if (horoscopeID == 0)
+            {
+                Horoscope horoscope = new Horoscope();
+                horoscope.Zodiac_ID = Convert.ToInt32(ddlZodiac.SelectedValue);
+                horoscope.Date = Convert.ToDateTime(txtDate.Text);
+                horoscope.Horoscope_English = txtHoroscope.Text;
+                db.Horoscopes.InsertOnSubmit(horoscope);
+
+            }
+            else
+            {
+                Horoscope horoscope = db.Horoscopes.Where(n => n.Id == horoscopeID).SingleOrDefault();
+                horoscope.Zodiac_ID = Convert.ToInt32(ddlZodiac.SelectedValue);
+                horoscope.Date = Convert.ToDateTime(txtDate.Text);
+                horoscope.Horoscope_English = txtHoroscope.Text;       
+
+            }
             db.SubmitChanges();
             Response.Redirect(Request.RawUrl);
 
+
+
+
+
+        }
+
+        private int horoscopeExists(int v, DateTime dateTime)
+        {
+            var horoscope = db.Horoscopes.Where(n => n.Zodiac_ID == v && n.Date == dateTime).SingleOrDefault();
+            if (horoscope != null)
+            {
+                return horoscope.Id;
+            }
+            return 0;
+        }
+
+        protected void grdHoroscope_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "editHoroscope")
+            {
+                var horoscopeID = Convert.ToInt16(e.CommandArgument);
+                loadEditData(horoscopeID);
+            }
         }
     }
 }
