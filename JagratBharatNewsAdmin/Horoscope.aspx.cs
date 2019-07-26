@@ -23,6 +23,7 @@ namespace JagratBharatNewsAdmin
             loadGridView(Convert.ToDateTime(ddlDate.SelectedValue));
         }
 
+        // Load data to gridview
         private void loadGridView(DateTime dateTime)
         {
             var horoscope = db.Horoscopes.Where(n => n.Date == dateTime).Select(n => new
