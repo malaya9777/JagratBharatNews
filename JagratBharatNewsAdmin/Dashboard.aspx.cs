@@ -13,8 +13,69 @@ namespace JagratBharatNewsAdmin
             if (!IsPostBack)
             {
                 loadCategoryGrid();
-
+                loadUserDetails();
+                loadUserList();
+                loadLatesNews();
+                loadScroller();
+                loadHoroscope();
             }
+        }
+
+        private void loadHoroscope()
+        {
+            var horosocpe = db.Zodiacs.Select(n => new
+            {
+                n.Id,
+                zodiac = n.Zodiac_English + "(" + n.Zodiac_Odia + ")",
+                hs = db.Horoscopes.Where(m => m.Zodiac_ID == n.Id && m.Date == DateTime.Now.Date).Select(o => o.Horoscope_English).FirstOrDefault()
+            }).ToList();
+            grdHoroscope.DataSource = horosocpe;
+            grdHoroscope.DataBind();
+        }
+
+        private void loadScroller()
+        {
+            var news = db.Posts.OrderByDescending(n => n.PostedOn).Select(n => new
+            {
+                n.Id,
+                headline = GlobalMethods.Truncate(n.HeadLine, 20),
+                css = n.SelectedScroller==true?"checked":"unchecked"
+            });
+            grdScroller.DataSource = news;
+            grdScroller.DataBind();
+        }
+
+        private void loadLatesNews()
+        {
+            var latestNews = db.Posts.OrderByDescending(n => n.PostedOn).Select(n => new
+            {
+                headLine = GlobalMethods.Truncate(n.HeadLine, 20),
+                link = "preview.aspx?ID=" + n.Id,
+                posted = n.Submitted
+            }).ToList();
+            grdNews.DataSource = latestNews;
+            grdNews.DataBind();
+        }
+
+        private void loadUserList()
+        {
+            var userList = db.Users.Select(n => new
+            {
+                usreName = n.Name,
+                createdOn = n.CreatedOn,
+                role = n.Role,
+                active = n.Active
+            }).ToList();
+            grdUserList.DataSource = userList;
+            grdUserList.DataBind();
+        }
+
+        private void loadUserDetails()
+        {
+            var user = db.Users;
+            boxActivated.InnerText = db.Users.Where(n => n.Active == true).Count() + " Users activated";
+            boxDeactivated.InnerText = db.Users.Where(n => n.Active == false).Count() + " Users deactivated";
+            boxTotal.InnerText = " Total users " + db.Users.Count();
         }
 
         private void loadCategoryGrid()
@@ -30,7 +91,7 @@ namespace JagratBharatNewsAdmin
                 grdCategories.DataSource = emptyCategory;
             }
             grdCategories.DataBind();
-        }       
+        }
 
         protected void grdCategories_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -65,6 +126,23 @@ namespace JagratBharatNewsAdmin
             db.Categories.InsertOnSubmit(category);
             db.SubmitChanges();
             loadCategoryGrid();
+        }     
+
+        protected void grdScroller_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int postID = Convert.ToInt32(e.CommandArgument);
+            var selectedPost = db.Posts.Where(n => n.Id == postID).SingleOrDefault();
+            if(selectedPost.SelectedScroller==null || selectedPost.SelectedScroller == false)
+            {
+                selectedPost.SelectedScroller = true;
+                db.SubmitChanges();
+            }
+            else
+            {
+                selectedPost.SelectedScroller = false;
+                db.SubmitChanges();
+            }
+            loadScroller();
         }
     }
 }

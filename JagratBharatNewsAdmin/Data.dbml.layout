@@ -32,12 +32,6 @@
         <elementListCompartment Id="22353ecf-4297-4b46-9214-c0fa86cbbeec" absoluteBounds="3.015, 2.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="05696dfc-3192-4c2b-a2a4-9b5e999e3405" isExpanded="false" absoluteBounds="3, 1.125, 2, 0.45">
-      <DataClassMoniker Name="/DataDataContext/Post" />
-      <nestedChildShapes>
-        <elementListCompartment Id="8de5d039-8c26-4d9d-a2b4-16fdf90499d4" absoluteBounds="3.015, 1.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="c504ac30-d99b-48f9-9c19-fabe5c7d7bd5" isExpanded="false" absoluteBounds="3, 2.375, 2, 0.45">
       <DataClassMoniker Name="/DataDataContext/Horoscope" />
       <nestedChildShapes>
@@ -48,6 +42,12 @@
       <DataClassMoniker Name="/DataDataContext/Zodiac" />
       <nestedChildShapes>
         <elementListCompartment Id="b486e8a1-1464-48da-af33-7a8b3b37c253" absoluteBounds="5.515, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5167bdc5-02f0-4c44-8934-f1d526a88de8" isExpanded="false" absoluteBounds="3, 1.125, 2, 0.45">
+      <DataClassMoniker Name="/DataDataContext/Post" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0f89a44e-0a30-431e-b14e-743448991a6c" absoluteBounds="3.015, 1.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

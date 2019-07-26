@@ -85,23 +85,12 @@
                     <asp:TemplateField HeaderText="Deactivate" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:TextBox ID="hdn" runat="server" Text='<%# Eval("Active") %>' style="display:none" />
-                            <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="btn orange" CommandName="Deactivate" CommandArgument='<%#Eval("ID")%>' />
-                            <asp:Button ID="btnActivate" runat="server" Text="Activate" CssClass="btn green" CommandName="Activate" CommandArgument='<%#Eval("ID") %>' />
+                            <asp:Button ID="btnDeactivate" runat="server" Text="Deactivate" CssClass="btn green" CommandName="Deactivate" CommandArgument='<%#Eval("ID")%>' />
+                            <asp:Button ID="btnActivate" runat="server" Text="Activate" CssClass="btn orange" CommandName="Activate" CommandArgument='<%#Eval("ID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
     </div>
-
-    <script type="text/javascript">
-        let userName = document.getElementById("<%=txtUserName.ClientID%>");
-        let password = document.getElementById("<%=txtPassword.ClientID%>");
-        let mobile = document.getElementById("<%=txtMobile.ClientID%>");
-        let email = document.getElementById("<%=txtEmail.ClientID%>");
-
-        function setEmpty(input) {
-            input.value = "";
-        }
-    </script>
 </asp:Content>

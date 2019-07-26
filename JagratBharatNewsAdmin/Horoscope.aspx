@@ -6,7 +6,7 @@
         .container {
             max-width: 85%;
             margin: 30px 50px auto auto;
-            grid-template-columns: 50% 50%;
+            grid-template-columns: 30% 70%;
             display: grid;
             grid-gap: 10px;
         }
@@ -20,7 +20,7 @@
         @media (max-width:1400px) {
             .container {
                 width: 80%;
-                grid-template-columns: 50% 50%;
+                grid-template-columns: 30% 70%;
                 display: grid;
                 grid-gap: 10px;
             }
@@ -54,18 +54,19 @@
             <div class="selectDate">
                 <asp:DropDownList ID="ddlDate" runat="server" CssClass="textBox" OnSelectedIndexChanged="ddlDate_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             </div>
+            <br />
             <div class="gridList">
                 <asp:GridView ID="grdHoroscope" runat="server" GridLines="Horizontal" Width="100%" OnRowCommand="grdHoroscope_RowCommand" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false">
                     <Columns>
-                        <asp:TemplateField HeaderText="SL No">
+                        <asp:TemplateField HeaderText="SL No" ItemStyle-Width="15%">
                             <ItemTemplate>
                                 <%# Container.DataItemIndex +1 %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="zodiac" HeaderText="Zodiac" />
-                        <asp:BoundField DataField="Horoscope_English" HeaderText="Horoscope" />
+                        <asp:BoundField DataField="zodiac" HeaderText="Zodiac" ItemStyle-Width="30%" />
+                        <asp:BoundField DataField="Horoscope_English" HeaderText="Horoscope" ItemStyle-Width="30%" />
 
-                        <asp:TemplateField HeaderText="Edit">
+                        <asp:TemplateField HeaderText="Edit" ItemStyle-Width="20%">
                             <ItemTemplate>
                                 <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn orange" CommandArgument='<%# Eval("ID") %>' CommandName="editHoroscope" />
                             </ItemTemplate>

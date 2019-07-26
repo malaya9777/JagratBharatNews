@@ -68,7 +68,7 @@ namespace JagratBharatNewsAdmin
         private void loadDates()
         {
             int m = 0;
-            for (double i = 0; i > -7; i--)
+            for (double i = 1; i > -6; i--)
             {
                 ddlDate.Items.Insert(m, DateTime.Now.AddDays(i).ToString("dd-MMM-yyyy"));
                 m++;
