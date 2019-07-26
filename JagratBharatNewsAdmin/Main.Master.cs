@@ -23,7 +23,6 @@ namespace JagratBharatNewsAdmin
             }
             else
             {
-                ;
                 userName.Text = GlobalMethods.getUserName(Convert.ToInt32(Session["LoginId"])).ToUpper();                
             }
         }

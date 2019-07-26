@@ -11,17 +11,11 @@
             grid-gap: 10px;
         }
 
-        .postNews {
+        .postNews, .latestNews {
             border: 1px solid rgba(0,0,0,.1);
             border-radius: 5px;
             padding: 10px;
-        }
-
-        .latestNews {
-            border: 1px solid rgba(0,0,0,.1);
-            border-radius: 5px;
-            padding: 10px;
-        }
+        }        
 
         .action {
             margin-top: 10px;

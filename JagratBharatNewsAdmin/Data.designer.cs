@@ -48,6 +48,12 @@ namespace JagratBharatNewsAdmin
     partial void InsertPost(Post instance);
     partial void UpdatePost(Post instance);
     partial void DeletePost(Post instance);
+    partial void InsertHoroscope(Horoscope instance);
+    partial void UpdateHoroscope(Horoscope instance);
+    partial void DeleteHoroscope(Horoscope instance);
+    partial void InsertZodiac(Zodiac instance);
+    partial void UpdateZodiac(Zodiac instance);
+    partial void DeleteZodiac(Zodiac instance);
     #endregion
 		
 		public DataDataContext() : 
@@ -125,6 +131,22 @@ namespace JagratBharatNewsAdmin
 			get
 			{
 				return this.GetTable<Post>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Horoscope> Horoscopes
+		{
+			get
+			{
+				return this.GetTable<Horoscope>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Zodiac> Zodiacs
+		{
+			get
+			{
+				return this.GetTable<Zodiac>();
 			}
 		}
 	}
@@ -1148,6 +1170,274 @@ namespace JagratBharatNewsAdmin
 					this._Submitted = value;
 					this.SendPropertyChanged("Submitted");
 					this.OnSubmittedChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Horoscope")]
+	public partial class Horoscope : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Zodiac_ID;
+		
+		private System.Nullable<System.DateTime> _Date;
+		
+		private string _Horoscope_Odia;
+		
+		private string _Horoscope_English;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnZodiac_IDChanging(System.Nullable<int> value);
+    partial void OnZodiac_IDChanged();
+    partial void OnDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateChanged();
+    partial void OnHoroscope_OdiaChanging(string value);
+    partial void OnHoroscope_OdiaChanged();
+    partial void OnHoroscope_EnglishChanging(string value);
+    partial void OnHoroscope_EnglishChanged();
+    #endregion
+		
+		public Horoscope()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zodiac_ID", DbType="Int")]
+		public System.Nullable<int> Zodiac_ID
+		{
+			get
+			{
+				return this._Zodiac_ID;
+			}
+			set
+			{
+				if ((this._Zodiac_ID != value))
+				{
+					this.OnZodiac_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Zodiac_ID = value;
+					this.SendPropertyChanged("Zodiac_ID");
+					this.OnZodiac_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horoscope_Odia", DbType="NVarChar(MAX)")]
+		public string Horoscope_Odia
+		{
+			get
+			{
+				return this._Horoscope_Odia;
+			}
+			set
+			{
+				if ((this._Horoscope_Odia != value))
+				{
+					this.OnHoroscope_OdiaChanging(value);
+					this.SendPropertyChanging();
+					this._Horoscope_Odia = value;
+					this.SendPropertyChanged("Horoscope_Odia");
+					this.OnHoroscope_OdiaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Horoscope_English", DbType="NVarChar(MAX)")]
+		public string Horoscope_English
+		{
+			get
+			{
+				return this._Horoscope_English;
+			}
+			set
+			{
+				if ((this._Horoscope_English != value))
+				{
+					this.OnHoroscope_EnglishChanging(value);
+					this.SendPropertyChanging();
+					this._Horoscope_English = value;
+					this.SendPropertyChanged("Horoscope_English");
+					this.OnHoroscope_EnglishChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Zodiacs")]
+	public partial class Zodiac : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Zodiac_Odia;
+		
+		private string _Zodiac_English;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnZodiac_OdiaChanging(string value);
+    partial void OnZodiac_OdiaChanged();
+    partial void OnZodiac_EnglishChanging(string value);
+    partial void OnZodiac_EnglishChanged();
+    #endregion
+		
+		public Zodiac()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zodiac_Odia", DbType="NVarChar(100)")]
+		public string Zodiac_Odia
+		{
+			get
+			{
+				return this._Zodiac_Odia;
+			}
+			set
+			{
+				if ((this._Zodiac_Odia != value))
+				{
+					this.OnZodiac_OdiaChanging(value);
+					this.SendPropertyChanging();
+					this._Zodiac_Odia = value;
+					this.SendPropertyChanged("Zodiac_Odia");
+					this.OnZodiac_OdiaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Zodiac_English", DbType="VarChar(100)")]
+		public string Zodiac_English
+		{
+			get
+			{
+				return this._Zodiac_English;
+			}
+			set
+			{
+				if ((this._Zodiac_English != value))
+				{
+					this.OnZodiac_EnglishChanging(value);
+					this.SendPropertyChanging();
+					this._Zodiac_English = value;
+					this.SendPropertyChanged("Zodiac_English");
+					this.OnZodiac_EnglishChanged();
 				}
 			}
 		}
