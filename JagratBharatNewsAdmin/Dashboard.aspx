@@ -117,6 +117,9 @@
         .deactivated {
             background-color: orange;
         }
+        .selected{
+            float:right;
+        }
 
         .total {
             background-color: lightpink;
@@ -180,7 +183,7 @@
             </asp:GridView>
         </div>
         <div class="smallPanel Scroller">
-            <div class="boxHeader">Select Scroller</div>
+            <div class="boxHeader">Select Scroller<span class="selected" runat="server" id="selected"></span></div>
             <asp:GridView runat="server" ID="grdScroller" AutoGenerateColumns="false" OnRowCommand="grdScroller_RowCommand" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="30" BorderStyle="None" GridLines="Horizontal" Width="100%">
                 <Columns>
                     <asp:TemplateField HeaderText="SL No">

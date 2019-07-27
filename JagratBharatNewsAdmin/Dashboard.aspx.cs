@@ -43,6 +43,9 @@ namespace JagratBharatNewsAdmin
             });
             grdScroller.DataSource = news;
             grdScroller.DataBind();
+            var selectedNews = db.Posts.Where(n => n.SelectedScroller == true).Count();
+            var totalNews = news.Count();
+            selected.InnerText ="Selected : "+ selectedNews + "/" + totalNews;
         }
 
         private void loadLatesNews()
