@@ -15,7 +15,7 @@
             border: 1px solid rgba(0,0,0,.1);
             border-radius: 5px;
             padding: 10px;
-        }        
+        }
 
         .action {
             margin-top: 10px;
@@ -110,6 +110,10 @@
         </div>
 
         <div class="latestNews">
+            <div id="notAllowed" runat="server" class="notAllowed">
+                <p>You are not authorized to view this page!<br>
+                    Please contack administrator.</p>
+            </div>
             <asp:GridView ID="grdPost" runat="server" GridLines="Horizontal" OnRowCommand="grdPost_RowCommand" AllowPaging="true" PageSize="10" OnPageIndexChanging="grdPost_PageIndexChanging" HeaderStyle-Font-Bold="false" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="40" BorderStyle="None" AutoGenerateColumns="false" Width="100%">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="ID" />

@@ -20,8 +20,22 @@ namespace JagratBharatNewsAdmin
                 Session.Remove("PostID");
                 loadCategories();
                 loadPostGrid();
+                checkPreviliage(GlobalMethods.getUserRole(Convert.ToInt32(Session["LoginID"])));
             }
         }
+
+        private void checkPreviliage(int? v)
+        {
+            if (v == 1)
+            {
+                notAllowed.Visible = false;
+            }
+            else
+            {
+                grdPost.Visible = false;
+            }
+        }
+
         // Load Post GridView
         private void loadPostGrid()
         {

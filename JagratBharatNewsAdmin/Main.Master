@@ -15,6 +15,15 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
         }
+         .notAllowed{
+            margin:10% auto auto auto;
+            width:80%;
+            top:20px;
+            right:20px;
+            text-align:center;
+            height:80vh;
+            vertical-align:middle;
+        }
 
         nav.navigationBar {
             position: fixed;

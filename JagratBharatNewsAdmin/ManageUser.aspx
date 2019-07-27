@@ -29,15 +29,7 @@
         .formControl {
             display: block;
         }
-        .notAllowed{
-            position:absolute;
-            width:80%;
-            top:20px;
-            right:20px;
-            text-align:center;
-            height:80vh;
-            vertical-align:middle;
-        }
+       
         
 
         @media (max-width:1400px) {
