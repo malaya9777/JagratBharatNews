@@ -12,7 +12,6 @@
             background-color: darkgray;
             padding: 10px;
         }
-
         .smallPanel {
             border: 1px solid rgba(0,0,0,.2);
             border-radius: 3px;
