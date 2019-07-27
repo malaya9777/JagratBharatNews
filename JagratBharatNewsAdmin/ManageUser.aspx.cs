@@ -17,9 +17,23 @@ namespace JagratBharatNewsAdmin
                 setDefaults();
                 loadDropdown();
                 loadGrid();
+                checkPreviliage(GlobalMethods.getUserRole(Convert.ToInt32(Session["LoginID"])));
 
             }
         }
+
+        private void checkPreviliage(int? v)
+        {
+            if (v == 1)
+            {
+                notAllowed.Visible = false;
+            }
+            else
+            {
+                mainContainer.Visible = false;
+            }
+        }
+
         private void setDefaults()
         {
             txtUserName.Text = "";
@@ -28,7 +42,6 @@ namespace JagratBharatNewsAdmin
             txtEmail.Text = "";
             ddlRole.SelectedIndex = 0;
             chkActive.Checked = true;
-
         }
 
         private void loadDropdown()

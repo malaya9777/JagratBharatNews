@@ -41,6 +41,23 @@ namespace JagratBharatNewsAdmin
             return Image.FromStream(ms);
 
         }
+
+        public static int? getUserRole(int? UserID)
+        {
+            using (DataDataContext db = new DataDataContext())
+            {
+                var user = db.Users.Where(n => n.Id == UserID).FirstOrDefault();
+                if (user != null)
+                {
+                    return user.Role;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public static string getUserName(int? UserID)
         {
             using (DataDataContext db = new DataDataContext())

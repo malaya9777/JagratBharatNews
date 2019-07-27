@@ -29,7 +29,15 @@
         .formControl {
             display: block;
         }
-
+        .notAllowed{
+            position:absolute;
+            width:80%;
+            top:20px;
+            right:20px;
+            text-align:center;
+            height:80vh;
+            vertical-align:middle;
+        }
         
 
         @media (max-width:1400px) {
@@ -44,7 +52,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+    <div class="container" runat="server" id="mainContainer">
         <div class="CreateUser">
             <h4>Create User</h4>
             <div class="formControl">
@@ -92,5 +100,9 @@
                 </Columns>
             </asp:GridView>
         </div>
+    </div>
+    <div id="notAllowed" runat="server" class="notAllowed">
+        <p>You are not authorized to view this page!<br>  Please contack administrator.</p>
+
     </div>
 </asp:Content>
