@@ -156,6 +156,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="usreName" HeaderText="Name" />
+                    <asp:BoundField DataField="userRole" HeaderText="Role" />
                     <asp:BoundField DataField="active" HeaderText="Activated" />
                 </Columns>
             </asp:GridView>

@@ -63,7 +63,7 @@ namespace JagratBharatNewsAdmin
             {
                 usreName = n.Name,
                 createdOn = n.CreatedOn,
-                role = n.Role,
+                userRole = n.Role==1?"Admin":"User",
                 active = n.Active
             }).ToList();
             grdUserList.DataSource = userList;
