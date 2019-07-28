@@ -15,14 +15,15 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
         }
-         .notAllowed{
-            margin:10% auto auto auto;
-            width:80%;
-            top:20px;
-            right:20px;
-            text-align:center;
-            height:80vh;
-            vertical-align:middle;
+
+        .notAllowed {
+            margin: 10% auto auto auto;
+            width: 80%;
+            top: 20px;
+            right: 20px;
+            text-align: center;
+            height: 80vh;
+            vertical-align: middle;
         }
 
         nav.navigationBar {
@@ -74,6 +75,7 @@
         .logout {
             color: orange !important;
         }
+
         .textBox, .checkbox, .btnSubmit {
             height: 30px;
             width: 250px;
@@ -92,26 +94,31 @@
 
         .btn {
             height: 25px;
-            font-size:10px;
+            font-size: 10px;
             width: 70px;
-            border:none;
+            border: none;
             border-radius: 3px;
         }
-        .green{
+
+        .green {
             background-color: #00b715;
             color: #fff;
         }
-        .orange{
-             background-color: #ff6a00;
+
+        .orange {
+            background-color: #ff6a00;
             color: #fff;
+        }
+
+        .modalBackground {
+            background-color: Gray;
+            filter: alpha(opacity=50);
+            opacity: 0.7;
         }
 
         @media (max-width:1200px) {
             body {
-                
             }
-
-                
         }
     </style>
 </head>
@@ -120,10 +127,11 @@
         <nav class="navigationBar">
             <div class="userInfo">
                 <img id="userImg" class="userImage" src="images/default/user.png" />
-                <asp:Label ID="userName" runat="server" CssClass="userName"></asp:Label>
             </div>
             <div class="menuList">
                 <ul>
+                    <li><a href="Profile.aspx">
+                        <asp:Label ID="userName" runat="server" CssClass="userName"></asp:Label></a></li>
                     <li><a href="Dashboard.aspx">Dashboard</a></li>
                     <li><a href="ManageUser.aspx">Manage User</a></li>
                     <li><a href="PostNews.aspx">Post News</a></li>
