@@ -95,8 +95,10 @@ namespace JagratBharatNewsAdmin
             else
             {
                 UserID = Convert.ToInt32(Session["SelectedUser"]);
+                Session.Remove("SelectedUser");
             }
             ResetPassword(UserID, txtNewPassword.Text);
+            loadGridview();
 
         }
 
