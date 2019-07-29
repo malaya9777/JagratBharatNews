@@ -177,24 +177,22 @@ body, html {
         list-style-type: none;
         padding: 0px;
         margin: 0px auto 0px auto;
-        height:300px;
-        
+        height: 300px;
     }
 
         .leftSidebar > ul > li {
-            width:80%;          
-            padding:10px;
+            width: 80%;
+            padding: 10px;
             text-align: center;
             border: 1px solid rgba(0,0,0,.1);
-            background-color:rgba(98, 98, 98, 0.68);
+            background-color: rgba(98, 98, 98, 0.68);
             border-radius: 5px;
-            margin:5px auto 0px auto;
-
+            margin: 5px auto 0px auto;
         }
 
             .leftSidebar > ul > li > a {
-                text-decoration: none;  
-                color:#fff;
+                text-decoration: none;
+                color: #fff;
             }
 /*Main Content*/
 .mainContent {
@@ -203,8 +201,9 @@ body, html {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 1px 3px black;
 }
+
 .catSpan {
-    position:relative;
+    position: relative;
     padding: 5px;
     background-color: red;
     float: left;
@@ -212,8 +211,9 @@ body, html {
     color: white;
     top: 20px;
 }
+
 .cardHeadline {
-   text-align:left;
+    text-align: left;
 }
 
 .cards {
@@ -228,7 +228,7 @@ body, html {
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(0, 0, 0, .1);
     padding: 5px;
-    border-radius:5px;
+    border-radius: 5px;
 }
 
     .card > img {
@@ -262,6 +262,7 @@ body, html {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+
 .scroll {
     height: 30px;
     background-color: red;
@@ -405,9 +406,11 @@ body, html {
     margin: auto auto 0px 0px;
 }
 
+
 .rashifal > ul {
     list-style: none;
     padding: 0;
+    display: none;
 }
 
 .rashifal > p {
@@ -426,6 +429,28 @@ body, html {
     .rashifal > ul > li > p {
         margin: 10px auto auto 12px;
         vertical-align: middle;
+    }
+
+.zodiac {
+    position: relative;
+    
+}
+
+    .zodiac .tooltipText {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .zodiac:hover .tooltipText {
+        visibility: visible;
     }
 
 .watch {

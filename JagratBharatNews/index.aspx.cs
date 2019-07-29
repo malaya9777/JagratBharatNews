@@ -18,15 +18,37 @@ namespace JagratBharatNews
                 {
                     var categories = db.Categories.ToList();
                     var posts = db.Posts.ToList();
+                   
 
                     loadScroller(posts);
                     loadCategory(categories);
                     loadCards(posts);
                     loadRecentVideo(posts);
+                    loadHoroscope();
                 }
                
             }
 
+        }
+
+        private void loadHoroscope()
+        {
+            using(dbDataContext db = new dbDataContext())
+            {
+                var horosocpe = db.Zodiacs.Select(n => new
+                {
+                    n.Id,
+                    zodiac = n.Zodiac_English + "(" + n.Zodiac_Odia + ")",
+                    hs = db.Horoscopes.Where(m => m.Zodiac_ID == n.Id && m.Date == DateTime.Now.Date).Select(o => o.Horoscope_English).FirstOrDefault()
+                }).ToList();
+                string empty = "";
+                foreach(var h in horosocpe)
+                {
+                    empty += "<li class='zodiac' onclick='window.open('Zodiac.aspx?Id="+h.Id+"')'><p>" + h.zodiac + "</p><span class='tooltipText'>"+h.hs+"</span></li>";
+                }
+                rashifal.InnerHtml = empty;
+            }
+           
         }
 
         private void loadRecentVideo(List<Post> posts)

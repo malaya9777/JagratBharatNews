@@ -5,23 +5,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="leftSidebar">
-            <p style="margin:10px auto 5px auto; text-align:center">Categories</p>
+            <p style="margin: 10px auto 5px auto; text-align: center">Categories</p>
             <ul runat="server" id="categoryList">
-                
+                <%-- Auto Generated Categories --%>
             </ul>
         </div>
         <div class="mainContent">
             <h3>Top Stories</h3>
             <div class="cards" id="cards" runat="server">
-                
+                <%-- Auto Generated Cards --%>
             </div>
         </div>
         <div class="rightSidebar">
             <div class="video">
-                <div runat="server" id="videoFrame"></div>
+                <div runat="server" id="videoFrame">
+                    <%-- Auto Generated Video --%>
+                </div>
                 <div class="scroll" id="scroll">
                     <p id="para" runat="server">
-                       
+                        <%-- Auto Generated Scroll --%>
                     </p>
                 </div>
             </div>
@@ -43,9 +45,20 @@
                     </div>
                 </div>
                 <div class="rashifal">
-                    <p>Rashifal</p>
-                    <ul>
-                        <li>
+                    <script>
+                        function expand() {
+                            let rashi = document.getElementById('ctl00_ContentPlaceHolder1_rashifal');
+                            if (rashi.style.display == "block") {
+                                rashi.style.display = "none";
+
+                            } else {
+                                rashi.style.display = "block";
+                            }
+                        }
+                    </script>
+                    <p style="cursor: pointer;padding:5px; border-radius:3px; color:white; background-color:darkviolet; margin-top:5px" onclick="expand()">Rashifal</p>
+                    <ul id="rashifal" runat="server">
+                        <%--<li>
                             <p>Aries</p>
                         </li>
                         <li>
@@ -80,7 +93,7 @@
                         </li>
                         <li>
                             <p>Pisces</p>
-                        </li>
+                        </li>--%>
                     </ul>
 
                 </div>
