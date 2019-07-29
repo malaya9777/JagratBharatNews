@@ -80,6 +80,7 @@
                 </div>
             </div>
         </div>
+        <asp:Button ID="btnHidden" runat="server" style="display:none" />
         <div class="resetRequest">
             <div class="notAllowed" runat="server" id="notAllowed">
                 <p>
@@ -87,11 +88,11 @@
                     Please contack administrator.
                 </p>
             </div>
-            <asp:GridView ID="grdUsers" runat="server" Width="100%" GridLines="Horizontal" RowStyle-Height="30" AutoGenerateColumns="false">
+            <asp:GridView ID="grdUsers" runat="server" Width="100%" GridLines="Horizontal" BorderStyle="None" OnRowCommand="grdUsers_RowCommand" HeaderStyle-HorizontalAlign="Left" RowStyle-Height="30" AutoGenerateColumns="false">
                 <Columns>
                     <asp:TemplateField HeaderText="SL No">
                         <ItemTemplate>
-                            <%# Container.DataItemIndex %>
+                            <%# Container.DataItemIndex +1 %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="Id" HeaderText="ID" />
@@ -99,7 +100,8 @@
                     <asp:BoundField DataField="Role" HeaderText="Role" />
                     <asp:TemplateField HeaderText="Reset">
                         <ItemTemplate>
-                            <asp:Button ID="btnReset" runat="server" CssClass="btn green" CommandArgument='<%# Eval("Id") %>' CommandName="Reset" />
+                            
+                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn green" CommandArgument='<%# Eval("Id") %>' CommandName="Reset" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -107,15 +109,15 @@
         </div>
     </div>
     <asp:Panel runat="server" ID="PopUpPanel" CssClass="panel">
-        <div id="user_p" runat="server"></div>
+        <div id="user_p" runat="server" align="center">Hello</div>
         <asp:Label runat="server" ID="lblNewPassword">New Password</asp:Label>
-        <asp:TextBox ID="txtNewPassword" runat="server" CssClass="textBox" placeholder="New Password"></asp:TextBox>
+        <asp:TextBox ID="txtNewPassword" runat="server" CssClass="textBox" placeholder="New Password" TextMode="Password" AutoCompleteType="None"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="txtNewPassword" ErrorMessage="*" ForeColor="Red" ValidationGroup="reset"></asp:RequiredFieldValidator>
         <asp:Button ID="btnChange" runat="server" CssClass="btn green" Text="Change" OnClick="btnChange_Click" ValidationGroup="reset" />
         <asp:Button ID="btnCancle" runat="server" CssClass="btn orange" Text="Cancle" OnClick="btnCancle_Click" />
     </asp:Panel>
     <asp:ToolkitScriptManager runat="server"></asp:ToolkitScriptManager>
-    <asp:ModalPopupExtender ID="mpe1" runat="server" TargetControlID="btnReset" BackgroundCssClass="modalBackground" PopupControlID="PopUpPanel">
+    <asp:ModalPopupExtender ID="mpe1" runat="server" TargetControlID="btnHidden" BackgroundCssClass="modalBackground" PopupControlID="PopUpPanel">
         
     </asp:ModalPopupExtender>
     

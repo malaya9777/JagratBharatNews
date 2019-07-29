@@ -38,16 +38,37 @@ namespace JagratBharatNewsAdmin
         private bool AuthorisedUser(string userName, string password)
         {
             var ensdPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
-            DataDataContext db = new DataDataContext();
-            var user = db.Users.Where(n => n.Name == userName && n.Password == ensdPassword && n.Active==true).SingleOrDefault();
-            if (user!=null)
+            using (DataDataContext db = new DataDataContext())
             {
-                Session["LoginId"] = user.Id;
-                return true;
+                var user = db.Users.Where(n => n.Name == userName && n.Password == ensdPassword && n.Active == true).SingleOrDefault();
+                if (user != null)
+                {
+                    Session["LoginId"] = user.Id;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+                
+        }
+
+        protected void lnkForgotPassword_Click(object sender, EventArgs e)
+        {
+            using(DataDataContext db = new DataDataContext())
             {
-                return false;
+                var user = db.Users.Where(n => n.Name == txtUserName.Text).SingleOrDefault();
+                if (user == null)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "User", "alert('Username incorrect!')", true);
+                }
+                else
+                {
+                    user.Reset_Request = true;
+                    db.SubmitChanges();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "User", "alert('Request to admin have been sent!')", true);
+                }
             }
         }
     }

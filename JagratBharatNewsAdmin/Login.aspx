@@ -67,7 +67,7 @@
             <asp:TextBox ID="txtPassword" runat="server" CssClass="textbox" TextMode="Password" placeholder="Password"></asp:TextBox>
             <asp:CheckBox ID="chkRememberMe" runat="server" CssClass="checkbox" Text="Remember Me" />
             <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="Login" OnClick="btnLogin_Click"/>
-            <asp:LinkButton ID="lnkForgotPassword" runat="server" CssClass="link" Text="Forgot Password"></asp:LinkButton>
+            <asp:LinkButton ID="lnkForgotPassword" runat="server" CssClass="link" Text="Forgot Password" OnClick="lnkForgotPassword_Click"></asp:LinkButton>
             
         </div>
     </form>
