@@ -56,7 +56,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="form" runat="server" ControlToValidate="txtPassword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="formControl">
-                <asp:TextBox ID="txtMobile" runat="server" CssClass="textBox" placeholder="10 Digit Mobile" autocomplete="off"></asp:TextBox>
+                <asp:TextBox ID="txtMobile" runat="server" CssClass="textBox" placeholder="10 Digit Mobile" MaxLength="10" autocomplete="off"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="form" runat="server" ControlToValidate="txtMobile" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="formControl">
