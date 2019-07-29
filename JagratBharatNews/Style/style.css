@@ -43,7 +43,7 @@ body, html {
 
 @keyframes glowOut {
     0% {
-        color:rgba(255,255,255,1);
+        color: rgba(255,255,255,1);
         text-shadow: 0px 0px 25px rgb(255, 255, 255);
     }
 
@@ -54,12 +54,10 @@ body, html {
 }
 
 .navigationBar > h3:hover {
-    
     animation: glowIn 1s forwards;
 }
 
 .navigationBar > h3:not(:hover) {
-    
     animation: glowOut 1s forwards;
 }
 
@@ -80,8 +78,9 @@ body, html {
         animation: glowIn 1s forwards;
         cursor: pointer;
     }
-    .menu:not(:hover), .close:not(:hover){
-        animation:glowOut 1s forwards;
+
+    .menu:not(:hover), .close:not(:hover) {
+        animation: glowOut 1s forwards;
     }
 
 .fadeIn {
@@ -156,7 +155,7 @@ body, html {
         width: 30px;
         cursor: pointer;
         background: #ffffff;
-        color:#000;
+        color: #000;
     }
 
 .container {
@@ -164,7 +163,7 @@ body, html {
     height: auto;
     margin: 70px auto 30px auto;
     display: grid;
-    grid-gap:1%;
+    grid-gap: 1%;
     grid-template-columns: 20% 58% 20%;
     grid-template-rows: auto;
 }
@@ -178,43 +177,24 @@ body, html {
         list-style-type: none;
         padding: 0px;
         margin: 0px auto 0px auto;
+        height:300px;
+        
     }
 
         .leftSidebar > ul > li {
-            height: 100px;
-            padding: 10px;
+            width:80%;          
+            padding:10px;
             text-align: center;
-            margin: 10px;
+            border: 1px solid rgba(0,0,0,.1);
+            background-color:rgba(98, 98, 98, 0.68);
+            border-radius: 5px;
+            margin:5px auto 0px auto;
+
         }
 
-            .leftSidebar > ul > li:nth-child(1) {
-                background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.1)),border-box,url(https://source.unsplash.com/200x100/?fashion), no-repeat center center;
-                background-size: cover;
-            }
-
-            .leftSidebar > ul > li:nth-child(2) {
-                background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.1)),border-box,url(https://source.unsplash.com/200x100/?science), no-repeat center center;
-                background-size: cover;
-            }
-
-            .leftSidebar > ul > li:nth-child(3) {
-                background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.1)),border-box,url(https://source.unsplash.com/200x100/?technology), no-repeat center center;
-                background-size: cover;
-            }
-
-            .leftSidebar > ul > li:nth-child(4) {
-                background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.1)),border-box,url(https://source.unsplash.com/200x100/?health), no-repeat center center;
-                background-size: cover;
-            }
-
-            .leftSidebar > ul > li:nth-child(5) {
-                background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.1)),border-box,url(https://source.unsplash.com/200x100/?news), no-repeat center center;
-                background-size: cover;
-            }
-
             .leftSidebar > ul > li > a {
-                text-decoration: none;
-                color: white;
+                text-decoration: none;  
+                color:#fff;
             }
 /*Main Content*/
 .mainContent {
@@ -222,6 +202,18 @@ body, html {
     text-align: center;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 1px 3px black;
+}
+.catSpan {
+    position:relative;
+    padding: 5px;
+    background-color: red;
+    float: left;
+    display: block;
+    color: white;
+    top: 20px;
+}
+.cardHeadline {
+   text-align:left;
 }
 
 .cards {
@@ -236,6 +228,7 @@ body, html {
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(0, 0, 0, .1);
     padding: 5px;
+    border-radius:5px;
 }
 
     .card > img {
@@ -267,8 +260,8 @@ body, html {
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 3px;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
-
 .scroll {
     height: 30px;
     background-color: red;
@@ -283,10 +276,11 @@ body, html {
         transform: translateX(180px);
         animation: scrolFromRight 60s linear infinite;
     }
-    .scroll > p > a{
-        text-decoration:none;
-        color:white;
-    }
+
+        .scroll > p > a {
+            text-decoration: none;
+            color: white;
+        }
 
         .scroll > p:hover {
             animation-play-state: paused;
@@ -313,9 +307,11 @@ body, html {
     margin: auto;
     max-width: 1200px;
 }
-.footer-content:hover{
-    animation:glowIn 1s forwards;
-}
+
+    .footer-content:hover {
+        animation: glowIn 1s forwards;
+    }
+
     .footer-content:not(:hover) {
         animation: glowOut 1s forwards;
     }
@@ -327,7 +323,6 @@ body, html {
 
 .low > i {
     border-top: none !important;
-    
 }
 
 .floatingMenu {
@@ -357,6 +352,7 @@ body, html {
             .list > ul > li:hover {
                 animation: glowIn 1s forwards;
             }
+
             .list > ul > li:not(:hover) {
                 animation: glowOut 1s forwards;
             }
@@ -390,7 +386,7 @@ body, html {
 .callender {
     height: 80px;
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: 50% 50%;
     border: 1px solid rgba(0, 0, 0, .1);
     cursor: pointer;
@@ -413,34 +409,35 @@ body, html {
     list-style: none;
     padding: 0;
 }
+
 .rashifal > p {
-    text-align:center;
-    padding-top:10px;
+    text-align: center;
+    padding-top: 10px;
 }
 
-    .rashifal > ul > li {
-        height: 40px;
-        vertical-align: middle;
-        margin-bottom: 4px;
-        border: 1px solid rgba(0, 0, 0, .1);
-        cursor: pointer;
-    }
+.rashifal > ul > li {
+    height: 40px;
+    vertical-align: middle;
+    margin-bottom: 4px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
 
-        .rashifal > ul > li > p {
-            margin: 10px auto auto 12px;
-            vertical-align: middle;
-        }
+    .rashifal > ul > li > p {
+        margin: 10px auto auto 12px;
+        vertical-align: middle;
+    }
 
 .watch {
     margin-top: 10px;
     text-align: center;
 }
 /*pad*/
-@media (max-width:1000px){
-    .container{
-        grid-template-columns:25% 48% 25%;
-
+@media (max-width:1000px) {
+    .container {
+        grid-template-columns: 25% 48% 25%;
     }
+
     .cards {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -465,7 +462,7 @@ body, html {
         display: none;
     }
 
-        /*.leftSidebar > ul > li {
+    /*.leftSidebar > ul > li {
             height: 30px;
             padding: 10px;
             text-align: center;
@@ -477,7 +474,7 @@ body, html {
                 color: black;
             }*/
 
-    
+
     .cards {
         display: grid;
         grid-template-columns: repeat(1, 1fr);

@@ -5,70 +5,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="leftSidebar">
-            <ul>
-                <li><a href="#">Fasion</a></li>
-                <li><a href="#">Sceince</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Health</a></li>
-                <li><a href="#">Daily News</a></li>
+            <p style="margin:10px auto 5px auto; text-align:center">Categories</p>
+            <ul runat="server" id="categoryList">
+                
             </ul>
         </div>
         <div class="mainContent">
-            <h3>News Team</h3>
-            <div class="cards">
-                <div class="card">
-                    <img src="https://source.unsplash.com/200x200/?face" alt="people">
-                    <h4>Jhon Doe</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla, in, et perspiciatis
-                        dolores explicabo
-                    </p>
-                </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/200x200/?face" alt="people">
-                    <h4>Jhon Doe</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla, in, et perspiciatis
-                        dolores explicabo
-                    </p>
-                </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/200x200/?face" alt="people">
-                    <h4>Jhon Doe</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla, in, et perspiciatis
-                        dolores explicabo
-                    </p>
-                </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/200x200/?face" alt="people">
-                    <h4>Jhon Doe</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla, in, et perspiciatis
-                        dolores explicabo
-                    </p>
-                </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/200x200/?face" alt="people">
-                    <h4>Jhon Doe</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla, in, et perspiciatis
-                        dolores explicabo
-                    </p>
-                </div>
-                <div class="card">
-                    <img src="https://source.unsplash.com/200x200/?face" alt="people">
-                    <h4>Jhon Doe</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nulla, in, et perspiciatis
-                        dolores explicabo
-                    </p>
-                </div>
+            <h3>Top Stories</h3>
+            <div class="cards" id="cards" runat="server">
+                
             </div>
         </div>
         <div class="rightSidebar">
             <div class="video">
-                <iframe width="100%" src="https://www.youtube.com/embed/wKAsYNcQ34A?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div runat="server" id="videoFrame"></div>
                 <div class="scroll" id="scroll">
                     <p id="para" runat="server">
                        
