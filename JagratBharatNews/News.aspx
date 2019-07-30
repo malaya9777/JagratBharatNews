@@ -6,7 +6,7 @@
 
         .container {
             max-width: 800px;
-            margin: 10px auto 10px auto;
+            margin: 80px auto 10px auto;
             padding: 0px 20px 0px 20px;
         }
 

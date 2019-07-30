@@ -150,8 +150,7 @@
         .ad {
             height: 10em;
             border: 1px solid rgba(0, 0, 0, .1);
-            background-image: url(https://source.unsplash.com/200x100/?ad);
-            background-size: cover;
+            
         }
 
         .other > div > p {
