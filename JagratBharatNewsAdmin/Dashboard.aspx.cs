@@ -35,7 +35,7 @@ namespace JagratBharatNewsAdmin
 
         private void loadScroller()
         {
-            var news = db.Posts.OrderByDescending(n => n.PostedOn).Select(n => new
+            var news = db.Posts.Where(n=>n.Submitted==true).OrderByDescending(n => n.PostedOn).Select(n => new
             {
                 n.Id,
                 headline = GlobalMethods.Truncate(n.HeadLine, 20),

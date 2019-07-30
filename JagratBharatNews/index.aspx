@@ -1,6 +1,270 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="JagratBharatNews.index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .container {
+            max-width: 1200px;
+            height: auto;
+            margin: 70px auto 30px auto;
+            display: grid;
+            grid-gap: 1%;
+            grid-template-columns: 20% 58% 20%;
+            grid-template-rows: auto;
+        }
+        /* Left Side bar*/
+        .leftSidebar {
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 1px 3px black;
+        }
+
+            .leftSidebar > ul {
+                list-style-type: none;
+                padding: 0px;
+                margin: 0px auto 0px auto;
+                height: 300px;
+            }
+
+                .leftSidebar > ul > li {
+                    width: 80%;
+                    padding: 10px;
+                    text-align: center;
+                    border: 1px solid rgba(0,0,0,.1);
+                    background-color: rgba(98, 98, 98, 0.68);
+                    border-radius: 5px;
+                    margin: 5px auto 0px auto;
+                }
+
+                    .leftSidebar > ul > li > a {
+                        text-decoration: none;
+                        color: #fff;
+                    }
+        /*Main Content*/
+        .mainContent {
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0px 1px 3px black;
+        }
+
+        .catSpan {
+            position: relative;
+            padding: 5px;
+            background-color: red;
+            float: left;
+            display: block;
+            color: white;
+            top: 15px;
+        }
+
+        .cardHeadline {
+            text-align: left;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px;
+            padding: 10px;
+            background-color: rgba(0,0,0,.1);
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(0, 0, 0, .1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+            .card > img {
+                width: 100%;
+            }
+
+            .card > h4 {
+                text-align: left;
+                text-indent: 10px;
+            }
+
+            .card > p {
+                padding: 5px;
+                text-align: justify;
+            }
+
+
+        /* Side Content */
+        .rightSidebar {
+            background-color: rgba(255, 255, 255, 1);
+            display: grid;
+            grid-template-rows: max-content max-content auto;
+            grid-gap: 10px;
+            box-shadow: 0px 1px 3px black;
+            padding: 10px;
+        }
+
+        .video {
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: 3px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .scroll {
+            height: 30px;
+            background-color: red;
+            color: white;
+            font-weight: bold;
+        }
+
+            .scroll > p {
+                margin: 0px;
+                padding: 5px;
+                white-space: nowrap;
+                transform: translateX(180px);
+                animation: scrolFromRight 60s linear infinite;
+            }
+
+                .scroll > p > a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+                .scroll > p:hover {
+                    animation-play-state: paused;
+                }
+
+        @keyframes scrolFromRight {
+            100% {
+                transform: translateX(-100%)
+            }
+        }
+
+        .advertisement {
+            text-align: center;
+        }
+
+            .advertisement > p {
+                padding: 0;
+                margin: 0;
+                font-weight: bold;
+            }
+
+        .ad {
+            height: 10em;
+            border: 1px solid rgba(0, 0, 0, .1);
+            background-image: url(https://source.unsplash.com/200x100/?ad);
+            background-size: cover;
+        }
+
+        .other > div > p {
+            margin: 0;
+        }
+
+        .callender {
+            height: 80px;
+            display: grid;
+            grid-template-columns: 40% 60%;
+            grid-template-rows: 50% 50%;
+            border: 1px solid rgba(0, 0, 0, .1);
+            cursor: pointer;
+        }
+
+        .date {
+            margin: auto 0px auto auto;
+            font-size: 50px;
+            font-weight: bold;
+            grid-row: span 2;
+            color: red;
+        }
+
+        .event {
+            font-weight: bold;
+            margin: auto auto 0px 0px;
+        }
+
+
+        .rashifal > ul {
+            list-style: none;
+            padding: 0;
+            display: none;
+        }
+
+        .rashifal > p {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .rashifal > ul > li {
+            height: 40px;
+            vertical-align: middle;
+            margin-bottom: 4px;
+            border: 1px solid rgba(0, 0, 0, .1);
+            cursor: pointer;
+        }
+
+            .rashifal > ul > li > p {
+                margin: 10px auto auto 12px;
+                vertical-align: middle;
+            }
+
+        .zodiac {
+            position: relative;
+        }
+
+            .zodiac .tooltipText {
+                visibility: hidden;
+                width: 120px;
+                background-color: black;
+                color: #fff;
+                text-align: left;
+                border-radius: 6px;
+                padding: 5px;
+                /* Position the tooltip */
+                position: absolute;
+                z-index: 1;
+            }
+
+            .zodiac:hover .tooltipText {
+                visibility: visible;
+            }
+
+        .watch {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        @media (max-width:1000px) {
+            .container {
+                grid-template-columns: 25% 48% 25%;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 5px;
+            }
+        }
+
+        @media (max-width:750px) {
+            .container {
+                margin: 70px auto 30px auto;
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .leftSidebar {
+                display: none;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-gap: 5px;
+            }
+
+            .watch {
+                padding-bottom: 20px;
+            }
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -56,46 +320,9 @@
                             }
                         }
                     </script>
-                    <p style="cursor: pointer;padding:5px; border-radius:3px; color:white; background-color:darkviolet; margin-top:5px" onclick="expand()">Rashifal</p>
-                    <ul id="rashifal" runat="server">
-                        <%--<li>
-                            <p>Aries</p>
-                        </li>
-                        <li>
-                            <p>Taurus</p>
-                        </li>
-                        <li>
-                            <p>Gemini</p>
-                        </li>
-                        <li>
-                            <p>Cancer</p>
-                        </li>
-                        <li>
-                            <p>Leo</p>
-                        </li>
-                        <li>
-                            <p>Virgo</p>
-                        </li>
-                        <li>
-                            <p>Libra</p>
-                        </li>
-                        <li>
-                            <p>Scorpio</p>
-                        </li>
-                        <li>
-                            <p>Sgittarius</p>
-                        </li>
-                        <li>
-                            <p>Capricorn</p>
-                        </li>
-                        <li>
-                            <p>Aquarius</p>
-                        </li>
-                        <li>
-                            <p>Pisces</p>
-                        </li>--%>
+                    <p style="cursor: pointer; padding: 5px; border-radius: 3px; color: white; background-color: darkviolet; margin-top: 5px" onclick="expand()">Rashifal</p>
+                    <ul id="rashifal" runat="server">                      
                     </ul>
-
                 </div>
                 <div class="watch">
                     <iframe
@@ -105,4 +332,11 @@
             </div>
         </div>
     </div>
+    <script>
+        let textWidht = document.getElementById("scroll");
+        let textp = document.getElementById("ctl00_ContentPlaceHolder1_para");
+        textWidht.style.width = textp.scrollWidth + "px";
+        textp.style.animationDuration = (textp.scrollWidth / 100) * 4 + "s";
+        console.log(textp.scrollWidth);
+    </script>
 </asp:Content>
