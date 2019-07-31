@@ -42,12 +42,25 @@ namespace JagratBharatNews
                 info.InnerText = post.NewsDate.Value.ToLongDateString();
                 loadImageFromPath("getImage.ashx?PostID=" + post.Id + "&Size=orginal");
                 loadParagraph(paragraphs, loadVideo(post.VideoPath));
+                loadCards(post.Category, post.Id);
             }
+
         }
 
-
-
-
+        private void loadCards(int? category, int? postID)
+        {
+            using(dbDataContext db = new dbDataContext())
+            {
+                var cardsInfo = db.Posts.Where(n=>n.Category==category && n.Id!=postID).OrderByDescending(n => n.Id).Take(6);
+                string infoString = "";
+                foreach (var c in cardsInfo)
+                {
+                    infoString += "<div class='card'><span class='catSpan'>" + globalMethods.getCategoryName(c.Category) + "</span><img src='getImage.ashx?PostID=" + c.Id + "&Size=thumbnail' alt='" +
+                        c.HeadLine + "'><div class='cardHeadline'>" + c.HeadLine + " <a href='News.aspx?ID=" + globalMethods.EncodeID(c.Id) + "' target='_blank' style='font-size:10px'>Read more..</a></div></div>";
+                }
+                RelatedNews.InnerHtml = infoString;
+            }
+        }
 
         private void loadParagraph(List<Paragraph> paragraphs, string videoFrame)
         {

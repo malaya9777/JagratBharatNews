@@ -31,6 +31,15 @@ namespace JagratBharatNews {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PostHeader;
         
         /// <summary>
+        /// ads1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ads1;
+        
+        /// <summary>
         /// category control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace JagratBharatNews {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PostContent;
+        
+        /// <summary>
+        /// RelatedNews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RelatedNews;
         
         /// <summary>
         /// ads control.

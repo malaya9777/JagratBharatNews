@@ -197,9 +197,7 @@
 
             .footer-content:not(:hover) {
                 animation: glowOut 1s forwards;
-            }
-
-
+            }            
             .footer-content > h4 {
                 margin: 0;
             }
@@ -260,7 +258,7 @@
 <body>
     <nav class="navigationBar">
         <div id="menu" class="menu"><i class="fa fa-bars"></i></div>
-        <h3>The Jagrat Bharat News</h3>
+        <h3 onclick="goHome()">The Jagrat Bharat News</h3>
     </nav>
     <div class="floatingMenu" id="floatingMenu">
         <div class="close">
@@ -268,19 +266,19 @@
         </div>
         <div class="list">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="categories.html">Categories</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="index.aspx">Home</a></li>
+                <li><a href="Categories.aspx">Categories</a></li>
+                <li><a href="AboutUs.aspx">About Us</a></li>
+                <li><a href="ContactUs.aspx">Contact Us</a></li>
                 <li>
                     <div class="search">
                         <input type="text" name="search" id="searchBox">
-                        <span><i class="fa fa-search"></i></span>
+                        <span onclick="search()"><i class="fa fa-search"></i></span>
                     </div>
                 </li>
                 <li>
                     <div class="share">
-                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-facebook" ></i>
                         <i class="fa fa-twitter"></i>
                         <i class="fa fa-youtube"></i>
                     </div>
@@ -296,7 +294,7 @@
     </form>
     <footer class="footer">
         <div class="footer-content">
-            <h4>The Jagrat Bharat News</h4>
+            <h4 onclick="goHome()" style="cursor:pointer">The Jagrat Bharat News</h4>
             <div class="share low">
                 <i class="fa fa-facebook"></i>
                 <i class="fa fa-twitter"></i>
@@ -316,6 +314,13 @@
             enable_page_level_ads: true
         });
 
+        function search() {
+            let searchBox = document.getElementById("searchBox");
+            window.location = "SearchResult.aspx?search=" + searchBox.value;
+        };
+        function goHome() {
+            window.location = "Index.aspx";
+        };
         //Floating Script
         let menu = document.getElementById('menu');
         let close = document.getElementById('close');

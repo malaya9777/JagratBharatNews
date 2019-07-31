@@ -150,7 +150,6 @@
         .ad {
             height: 10em;
             border: 1px solid rgba(0, 0, 0, .1);
-            
         }
 
         .other > div > p {
@@ -262,6 +261,8 @@
             .watch {
                 padding-bottom: 20px;
             }
+
+          
         }
     </style>
 </asp:Content>
@@ -278,6 +279,7 @@
             <div class="cards" id="cards" runat="server">
                 <%-- Auto Generated Cards --%>
             </div>
+            <div style="height: 200px; margin: 20px 0px 10px 0px">Advertisement</div>
         </div>
         <div class="rightSidebar">
             <div class="video">
@@ -320,7 +322,7 @@
                         }
                     </script>
                     <p style="cursor: pointer; padding: 5px; border-radius: 3px; color: white; background-color: darkviolet; margin-top: 5px" onclick="expand()">Rashifal</p>
-                    <ul id="rashifal" runat="server">                      
+                    <ul id="rashifal" runat="server">
                     </ul>
                 </div>
                 <div class="watch">

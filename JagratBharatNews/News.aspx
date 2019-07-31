@@ -26,6 +26,8 @@
             position: absolute;
             bottom: 20px;
             left: 20px;
+            text-align:left;
+            padding:0px 10px 0px 0px;
         }
 
         .cat{
@@ -45,9 +47,56 @@
             margin-top: 10px;
             text-align: left;
             color: rgb(0,0,0);
-        }  
+        } 
+        h5.relatedNews{
+            background-color:darkviolet;
+            padding:5px;
+            color:#fff;
+        }
 
-        
+        .catSpan {
+            position: relative;
+            padding: 5px;
+            background-color: red;
+            float: left;
+            display: block;
+            color: white;
+            top: 15px;
+        }
+
+        .cardHeadline {
+            text-align: left;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px;
+            padding: 10px;
+            background-color: rgba(0,0,0,.1);
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(0, 0, 0, .1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+            .card > img {
+                width: 100%;
+            }
+
+            .card > h4 {
+                text-align: left;
+                text-indent: 10px;
+            }
+
+            .card > p {
+                padding: 5px;
+                text-align: justify;
+            }
+            
 
         @media(max-width:600px) {
             .header {
@@ -61,6 +110,7 @@
                 position: absolute;
                 bottom: 5px;
                 left: 5px;
+                text-align:left;
             }
         }
     </style>
@@ -72,6 +122,7 @@
                 <div id="heading" runat="server" class="header">
                     <h2 id="PostHeader" class="PostHeader" runat="server"></h2>
                 </div>
+                <div id="ads1" runat="server"></div>
                 <div class="cat">
                     <p id="category" class="categoryInner" runat="server"></p>
                 </div>
@@ -79,6 +130,10 @@
                     <p id="info" class="infoDetails" runat="server"></p>
                 </div>
                 <div id="PostContent" runat="server"></div>
+                <h5 class="relatedNews">Related News</h5>
+                <div id="RelatedNews" class="cards" runat="server">
+                    
+                </div>
                 <div id="ads" runat="server"></div>
 
             </article>
