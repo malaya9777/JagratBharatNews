@@ -15,6 +15,7 @@ namespace JagratBharatNews
             {
                 string serachTerm = Request.QueryString["search"];
                 FindResult(serachTerm);
+                searchTerm.InnerText = "Showing Results for \""+serachTerm +"\"";
             }
         }
         private void FindResult(string searchTerm)
@@ -23,9 +24,9 @@ namespace JagratBharatNews
             using (dbDataContext db = new dbDataContext())
             {
                 var splitedSearch = searchTerm.Split(' ');
-                foreach(var s in splitedSearch)
+                foreach (var s in splitedSearch)
                 {
-                    posts.AddRange(db.Posts.Where(n => n.HeadLine.Contains(s)).ToList()); 
+                    posts.AddRange(db.Posts.Where(n => n.HeadLine.Contains(s)).ToList());
                 }
                 loadResults(posts);
             }
@@ -34,12 +35,12 @@ namespace JagratBharatNews
         private void loadResults(List<Post> posts)
         {
             string empty = "";
-            foreach(var s in posts)
+            foreach (var s in posts.Distinct())
             {
-                empty += "<div class='result'><img src = 'getImage.ashx?PostID=" + s.Id + "&Size=thumbnail' alt ='" + s.HeadLine + "' /><h5>" + s.HeadLine + "</ h5 >" +
-                    "<a href=News.aspx?ID=" + globalMethods.EncodeID(s.Id) + "> Read more...</a ></div>";
+                empty += "<div class='result'><a href=News.aspx?ID=" + globalMethods.EncodeID(s.Id) + "><div class='img' style=\"background-image:url('getImage.ashx?PostID=" + s.Id + "&Size=thumbnail')\"> </div> <h5>" + s.HeadLine + "</h5></a></div>";
+                         
             }
-            results.InnerHtml = empty;
+            results.InnerHtml = empty == string.Empty ? "<div class='result'><a href='#'>No results found!</a><div>":empty;
         }
     }
 }

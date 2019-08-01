@@ -72,7 +72,7 @@
       <DependentUpon>db.dbml</DependentUpon>
     </None>
     <Content Include="getImage.ashx" />
-    <None Include="Properties\PublishProfiles\www.malayamanjula.co.in.pubxml" />
+    <None Include="Properties\PublishProfiles\malayamanjula.co.in.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
