@@ -35,12 +35,12 @@ namespace JagratBharatNews
         private void loadResults(List<Post> posts)
         {
             string empty = "";
-            foreach (var s in posts.Distinct())
+            foreach (var s in posts.Distinct().OrderByDescending(n=>n.NewsDate).Take(10))
             {
                 empty += "<div class='result'><a href=News.aspx?ID=" + globalMethods.EncodeID(s.Id) + "><div class='img' style=\"background-image:url('getImage.ashx?PostID=" + s.Id + "&Size=thumbnail')\"> </div> <h5>" + s.HeadLine + "</h5></a></div>";
                          
             }
-            results.InnerHtml = empty == string.Empty ? "<div class='result'><a href='#'>No results found!</a><div>":empty;
+            results.InnerHtml = empty == string.Empty ? "<div class='result'><a href='#'>No results found!<div class='img'></div><h5></h5></a></div>":empty;
         }
     }
 }

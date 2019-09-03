@@ -44,6 +44,10 @@ namespace JagratBharatNews
                 loadParagraph(paragraphs, loadVideo(post.VideoPath));
                 loadCards(post.Category, post.Id);
             }
+            else
+            {
+                Response.Redirect("Index.aspx");
+            }
 
         }
 

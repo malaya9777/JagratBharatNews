@@ -209,7 +209,7 @@
 
             .zodiac .tooltipText {
                 visibility: hidden;
-                width: 120px;
+                width: 100%;
                 background-color: black;
                 color: #fff;
                 text-align: left;
@@ -222,6 +222,9 @@
 
             .zodiac:hover .tooltipText {
                 visibility: visible;
+            }
+            .tooltipText:active .tooltipText{
+                visibility:hidden;
             }
 
         .watch {
