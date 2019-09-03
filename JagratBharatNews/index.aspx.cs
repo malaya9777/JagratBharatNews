@@ -17,7 +17,7 @@ namespace JagratBharatNews
                 using (dbDataContext db = new dbDataContext())
                 {
                     var categories = db.Categories.ToList();
-                    var posts = db.Posts.ToList();
+                    var posts = db.Posts.Where(n=>n.Submitted==true).ToList();
 
 
                     loadScroller(posts);
